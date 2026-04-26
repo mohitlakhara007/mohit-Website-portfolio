@@ -1,5 +1,6 @@
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
+import ScrollPath from './components/layout/ScrollPath';
 import Hero from './components/sections/Hero';
 import About from './components/sections/About';
 import Portfolio from './components/sections/Portfolio';
@@ -9,6 +10,7 @@ import Contact from './components/sections/Contact';
 export default function App() {
   return (
     <div className="bg-[var(--color-bg-light)] min-h-screen text-[var(--color-text-main)] font-sans relative">
+      <ScrollPath />
       <Navbar />
       <main>
         <Hero />

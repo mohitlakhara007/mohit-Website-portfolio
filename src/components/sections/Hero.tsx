@@ -4,7 +4,20 @@ import { FaBehance, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
 
 export default function Hero() {
   return (
-    <section id="home" className="relative min-h-[100svh] w-full flex items-center justify-center pt-24 pb-12 overflow-hidden">
+    <section id="home" className="relative min-h-[100svh] w-full flex items-center justify-center pt-24 pb-12 overflow-hidden bg-dot-pattern">
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[var(--color-bg-light)]/50 to-[var(--color-bg-light)] pointer-events-none" />
+      
+      {/* Abstract floating shapes */}
+      <motion.div 
+        animate={{ y: [0, -20, 0], rotate: [0, 10, 0] }} 
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-1/4 left-[15%] w-24 h-24 rounded-full border border-[var(--color-brand)]/20 z-0 hidden md:block"
+      />
+      <motion.div 
+        animate={{ y: [0, 30, 0], rotate: [0, -15, 0] }} 
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute bottom-1/4 right-[15%] w-32 h-32 rounded-full border-2 border-[var(--color-accent)]/20 border-dashed z-0 hidden md:block"
+      />
       
       {/* Social Links sidebar (absolute left) */}
       <div className="hidden xl:flex absolute left-8 top-1/2 -translate-y-1/2 flex-col gap-6 z-30">
@@ -34,13 +47,17 @@ export default function Hero() {
             </div>
           </motion.div>
           
-          <motion.h1 variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } } }} className="font-display text-6xl md:text-[5rem] lg:text-[7rem] font-bold tracking-tight text-[var(--color-text-main)] leading-[1.05] mb-6">
+          <motion.h1 variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } } }} className="font-display text-6xl md:text-[6rem] lg:text-[7.5rem] font-bold tracking-tighter text-[var(--color-text-main)] leading-[0.95] mb-6 relative">
             I Design <br className="hidden md:block" />
-            <span className="text-[var(--color-accent)]">Visual Stories</span> <br className="hidden md:block" />
+            <span className="text-[var(--color-accent)] relative">Visual Stories
+               <svg className="absolute -top-6 -right-12 w-10 h-10 text-[var(--color-brand)] animate-[spin_10s_linear_infinite]" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 2L13.5 10.5L22 12L13.5 13.5L12 22L10.5 13.5L2 12L10.5 10.5L12 2Z" fill="currentColor"/>
+               </svg>
+            </span> <br className="hidden md:block" />
             That Connect<span className="text-[var(--color-accent)]">.</span>
           </motion.h1>
 
-          <motion.p variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } } }} className="text-lg md:text-xl text-[var(--color-text-main)] font-medium mb-10 max-w-lg leading-relaxed text-center">
+          <motion.p variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } } }} className="text-lg md:text-2xl text-[var(--color-text-main)] font-medium mb-10 max-w-xl leading-relaxed text-center opacity-80">
             Graphic Designer & UI/UX Designer from Surat, India.<br/>
             I craft clean, intentional and impactful designs.
           </motion.p>

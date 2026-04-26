@@ -35,18 +35,31 @@ export default function Portfolio() {
 
   return (
     <section id="work" className="py-24 relative z-10 overflow-hidden bg-[var(--color-bg-light)]">
+      <div className="absolute inset-0 bg-dot-pattern opacity-50 mix-blend-multiply pointer-events-none" />
       
-      <div className="max-w-[1400px] mx-auto px-6 md:px-12">
-        <div className="inline-block bg-[var(--color-brand-light)] px-5 py-2.5 rounded-full mb-6 text-xs text-[var(--color-brand)] font-bold tracking-wider shadow-sm uppercase">
-           MY PORTFOLIO
-        </div>
+      <div className="max-w-[1400px] mx-auto px-6 md:px-12 relative z-10">
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={{
+            hidden: { opacity: 0 },
+            visible: {
+              opacity: 1,
+              transition: { staggerChildren: 0.1 }
+            }
+          }}
+        >
+          <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } }} className="inline-block bg-[var(--color-brand-light)] px-5 py-2.5 rounded-full mb-6 text-xs text-[var(--color-brand)] font-bold tracking-wider shadow-sm uppercase">
+             MY PORTFOLIO
+          </motion.div>
 
-        <div className="flex flex-col xl:flex-row xl:items-end justify-between gap-10 mb-16">
-          <h2 className="text-4xl md:text-5xl lg:text-[4rem] font-display font-bold text-[var(--color-text-main)] max-w-md leading-[1.1]">
-            Work That Speaks For <span className="text-[var(--color-accent)]">Itself.</span>
-          </h2>
-          
-          <div className="flex overflow-x-auto hide-scroll gap-4 md:gap-8 lg:gap-10 pb-4">
+          <div className="flex flex-col xl:flex-row xl:items-end justify-between gap-10 mb-16">
+            <motion.h2 variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } }} className="text-4xl md:text-5xl lg:text-[4rem] font-display font-bold text-[var(--color-text-main)] max-w-md leading-[1.1]">
+              Work That Speaks For <span className="text-[var(--color-accent)]">Itself.</span>
+            </motion.h2>
+            
+            <motion.div variants={{ hidden: { opacity: 0, x: 30 }, visible: { opacity: 1, x: 0, transition: { duration: 0.6 } } }} className="flex overflow-x-auto hide-scroll gap-3 pb-4">
             {categories.map(cat => {
                const Icon = cat.icon;
                const isActive = activeCategory === cat.name;
@@ -54,25 +67,20 @@ export default function Portfolio() {
                  <button
                    key={cat.name}
                    onClick={() => setActiveCategory(cat.name)}
-                   className="flex flex-col items-center gap-3 group"
-                 >
-                   <div className={`w-16 h-16 rounded-2xl flex items-center justify-center transition-all ${
+                   className={`flex items-center gap-2 px-6 py-3.5 rounded-full whitespace-nowrap transition-all duration-300 font-semibold border ${
                      isActive 
-                       ? 'bg-[#FFD4C2] border border-[var(--color-accent)]/30 shadow-sm' 
-                       : 'bg-white border border-black/5 hover:bg-gray-50'
-                   }`}>
-                     <Icon size={24} className={isActive ? 'text-[var(--color-accent)]' : 'text-gray-500 group-hover:text-[var(--color-text-main)]'} strokeWidth={1.5} />
-                   </div>
-                   <span className={`text-xs font-semibold whitespace-nowrap text-center ${
-                     isActive ? 'text-[var(--color-brand)]' : 'text-gray-500 group-hover:text-[var(--color-text-main)]'
-                   }`}>
-                     {cat.name.split(' ').map((word, i) => <span key={i}>{word}<br/></span>)}
-                   </span>
+                       ? 'bg-[var(--color-brand)] text-white border-[var(--color-brand)] shadow-md translate-y-[-2px]' 
+                       : 'bg-white text-[var(--color-text-main)] border-black/5 hover:border-black/20 hover:bg-gray-50'
+                   }`}
+                 >
+                   <Icon size={16} className={isActive ? 'text-[var(--color-accent)]' : 'text-gray-400'} />
+                   {cat.name}
                  </button>
                )
             })}
-          </div>
+          </motion.div>
         </div>
+        </motion.div>
 
         {/* Carousel */}
         <div className="relative group/wrapper">

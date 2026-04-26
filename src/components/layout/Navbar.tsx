@@ -27,29 +27,30 @@ export default function Navbar() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 py-4`}
+      className={`fixed top-4 left-0 right-0 z-50 flex justify-center w-full px-4 sm:px-6 transition-all duration-500`}
     >
-      <div className={`absolute inset-0 transition-opacity duration-500 ${isScrolled ? 'opacity-100 bg-[#F5F2ED]/90 backdrop-blur-md shadow-sm border-b border-black/5' : 'opacity-0'}`} />
-
-      <div className="relative max-w-[1400px] mx-auto px-6 md:px-12 flex items-center justify-between">
+      <div className={`relative flex items-center justify-between w-full max-w-5xl px-6 py-3 md:py-4 rounded-full transition-all duration-500 ${isScrolled ? 'bg-[#F5F2ED]/80 backdrop-blur-xl shadow-lg border border-black/10' : 'bg-transparent'}`}>
+        
         <a href="#home" className="flex flex-col z-50 group no-underline">
-          <span className="text-xl md:text-2xl font-display font-bold text-[var(--color-text-main)] leading-tight flex items-start">
-            Mohit Lakhara<span className="text-[var(--color-accent)] text-lg">*</span>
+          <span className="text-xl font-display font-bold text-[var(--color-text-main)] leading-tight flex items-start">
+            Mohit<span className="text-[var(--color-accent)]">*</span>
           </span>
-          <span className="text-[10px] text-gray-500 font-medium tracking-wide">Graphic & UI/UX Designer</span>
         </a>
 
         {/* Desktop Nav */}
-        <nav className="hidden lg:flex items-center gap-10">
+        <nav className="hidden md:flex items-center gap-8 px-8 py-2 rounded-full bg-white/40 shadow-inner border border-white/60">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
-              className={`text-sm font-bold transition-all duration-300 relative py-2 ${
-                link.active ? 'text-[var(--color-text-main)] after:w-full' : 'text-gray-500 hover:text-[var(--color-text-main)] after:w-0'
-              } after:content-[''] after:absolute after:bottom-0 after:left-0 after:h-[2px] after:bg-[var(--color-accent)] hover:after:w-full`}
+              className={`text-sm font-semibold transition-all duration-300 relative ${
+                link.active ? 'text-[var(--color-brand)]' : 'text-gray-500 hover:text-[var(--color-text-main)]'
+              }`}
             >
               {link.name}
+              {link.active && (
+                <motion.div layoutId="nav-pill" className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[var(--color-accent)]" />
+              )}
             </a>
           ))}
         </nav>
@@ -58,7 +59,7 @@ export default function Navbar() {
         <div className="hidden lg:block relative z-50">
           <a
             href="mailto:mohitlakhara007061@gmail.com"
-            className="px-6 py-2.5 rounded-full bg-[var(--color-brand)] text-white text-sm font-semibold hover:bg-[#1a3324] transition-all duration-300 shadow-sm flex items-center gap-2 group"
+            className="px-5 py-2.5 rounded-full bg-[var(--color-brand)] text-white text-sm font-semibold hover:bg-[#1a3324] transition-all duration-300 shadow-md flex items-center gap-2 group"
           >
             Let's Talk
             <div className="w-5 h-5 rounded-full bg-[var(--color-accent)] flex items-center justify-center">
@@ -69,10 +70,10 @@ export default function Navbar() {
 
         {/* Mobile Toggle */}
         <button
-          className="lg:hidden z-50 p-2 text-[var(--color-text-main)]"
+          className="md:hidden z-50 p-2 text-[var(--color-text-main)] bg-white/50 rounded-full shadow-sm"
           onClick={() => setIsOpen(!isOpen)}
         >
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
+          {isOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
       </div>
 
