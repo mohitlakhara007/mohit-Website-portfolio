@@ -1,0 +1,133 @@
+import { useState, useRef } from 'react';
+import { motion } from 'motion/react';
+import { ChevronLeft, ChevronRight, PenTool, Star, Instagram, PlaySquare, Package, Printer, Smartphone, Monitor } from 'lucide-react';
+import { FaYoutube } from 'react-icons/fa';
+
+const categories = [
+  { name: "Logofolio", icon: PenTool },
+  { name: "Branding", icon: Star },
+  { name: "Social Media", icon: Instagram },
+  { name: "YouTube Thumbnails", icon: PlaySquare },
+  { name: "Packaging Design", icon: Package },
+  { name: "Print Media", icon: Printer },
+  { name: "App Design", icon: Smartphone },
+  { name: "Website Design", icon: Monitor },
+];
+
+const portfolioData = [
+  { id: 1, title: 'Clover Real Estate', category: 'Logofolio', img: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2670&auto=format&fit=crop', isDark: true },
+  { id: 2, title: 'Coffee Cups', category: 'Packaging Design', img: 'https://images.unsplash.com/photo-1559525839-b184a4d698c7?q=80&w=2670&auto=format&fit=crop', isDark: false },
+  { id: 3, title: 'New Arrival Poster', category: 'Social Media', img: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=2662&auto=format&fit=crop', isDark: false },
+  { id: 4, title: 'Youtube Thumbnail', category: 'YouTube Thumbnails', img: 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=2574&auto=format&fit=crop', isDark: true },
+  { id: 5, title: 'Bottle Package', category: 'Packaging Design', img: 'https://images.unsplash.com/photo-1626162987518-4fee109ba4d8?q=80&w=2670&auto=format&fit=crop', isDark: true },
+];
+
+export default function Portfolio() {
+  const [activeCategory, setActiveCategory] = useState(categories[0].name);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  const scroll = (direction: 'left' | 'right') => {
+    if (scrollContainerRef.current) {
+      const scrollAmount = direction === 'left' ? -400 : 400;
+      scrollContainerRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <section id="work" className="py-24 relative z-10 overflow-hidden bg-[var(--color-bg-light)]">
+      
+      <div className="max-w-[1400px] mx-auto px-6 md:px-12">
+        <div className="inline-block bg-[var(--color-brand-light)] px-5 py-2.5 rounded-full mb-6 text-xs text-[var(--color-brand)] font-bold tracking-wider shadow-sm uppercase">
+           MY PORTFOLIO
+        </div>
+
+        <div className="flex flex-col xl:flex-row xl:items-end justify-between gap-10 mb-16">
+          <h2 className="text-4xl md:text-5xl lg:text-[4rem] font-display font-bold text-[var(--color-text-main)] max-w-md leading-[1.1]">
+            Work That Speaks For <span className="text-[var(--color-accent)]">Itself.</span>
+          </h2>
+          
+          <div className="flex overflow-x-auto hide-scroll gap-4 md:gap-8 lg:gap-10 pb-4">
+            {categories.map(cat => {
+               const Icon = cat.icon;
+               const isActive = activeCategory === cat.name;
+               return (
+                 <button
+                   key={cat.name}
+                   onClick={() => setActiveCategory(cat.name)}
+                   className="flex flex-col items-center gap-3 group"
+                 >
+                   <div className={`w-16 h-16 rounded-2xl flex items-center justify-center transition-all ${
+                     isActive 
+                       ? 'bg-[#FFD4C2] border border-[var(--color-accent)]/30 shadow-sm' 
+                       : 'bg-white border border-black/5 hover:bg-gray-50'
+                   }`}>
+                     <Icon size={24} className={isActive ? 'text-[var(--color-accent)]' : 'text-gray-500 group-hover:text-[var(--color-text-main)]'} strokeWidth={1.5} />
+                   </div>
+                   <span className={`text-xs font-semibold whitespace-nowrap text-center ${
+                     isActive ? 'text-[var(--color-brand)]' : 'text-gray-500 group-hover:text-[var(--color-text-main)]'
+                   }`}>
+                     {cat.name.split(' ').map((word, i) => <span key={i}>{word}<br/></span>)}
+                   </span>
+                 </button>
+               )
+            })}
+          </div>
+        </div>
+
+        {/* Carousel */}
+        <div className="relative group/wrapper">
+          <button 
+            onClick={() => scroll('left')} 
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 z-20 w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg border border-black/5 text-[var(--color-brand)] hover:scale-105 transition-transform"
+          >
+            <ChevronLeft size={24} />
+          </button>
+          <button 
+             onClick={() => scroll('right')} 
+             className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 z-20 w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg border border-black/5 text-[var(--color-brand)] hover:scale-105 transition-transform"
+           >
+            <ChevronRight size={24} />
+          </button>
+
+          <div 
+            ref={scrollContainerRef}
+            className="flex gap-6 overflow-x-auto hide-scroll snap-x snap-mandatory py-4 px-2"
+          >
+            {portfolioData.map((item, index) => (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                key={item.id}
+                className="relative w-[260px] md:w-[300px] lg:w-[340px] aspect-square rounded-[2rem] overflow-hidden shadow-sm group/card bg-gray-100 snap-center shrink-0 border border-black/5"
+              >
+                <img 
+                  src={item.img} 
+                  alt={item.title}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-105"
+                />
+                
+                {item.category === 'YouTube Thumbnails' && (
+                  <div className="absolute top-4 right-4 bg-red-600 text-white w-10 h-8 rounded flex items-center justify-center">
+                    <FaYoutube size={20} />
+                  </div>
+                )}
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-12 text-center">
+          <a href="#" className="inline-flex items-center gap-2 text-[var(--color-brand)] font-bold text-lg hover:text-[var(--color-accent)] transition-colors group">
+            View All Projects
+            <div className="w-6 h-6 rounded-full bg-[var(--color-accent)] flex items-center justify-center">
+               <ChevronRight className="text-white group-hover:translate-x-0.5 transition-transform" size={14} />
+            </div>
+          </a>
+        </div>
+
+      </div>
+    </section>
+  );
+}

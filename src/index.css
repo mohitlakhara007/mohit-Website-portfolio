@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  
+  --color-bg-light: #F5F2ED;
+  --color-bg-dark: #1A1A1A;
+  --color-bg-card: rgba(0, 0, 0, 0.03);
+  --color-brand: #1F3D2B;
+  --color-brand-light: #DCE8DF;
+  --color-accent: #F47C2C;
+  --color-accent-glow: rgba(244, 124, 44, 0.5);
+  --color-text-main: #1A1A1A;
+  --color-text-muted: rgba(26, 26, 26, 0.6);
+}
+
+@layer base {
+  body {
+    @apply bg-[var(--color-bg-light)] text-[var(--color-text-main)] font-sans antialiased overflow-x-hidden selection:bg-[var(--color-accent)] selection:text-white;
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  .glass {
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+  
+  .glass-hover {
+    transition: all 0.3s ease;
+  }
+  
+  .glass-hover:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .text-glow {
+    text-shadow: 0 0 20px var(--color-accent-glow);
+  }
+  
+  .box-glow {
+    box-shadow: 0 0 40px -10px var(--color-accent-glow);
+  }
+  
+  .mask-edge {
+    mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .hide-scroll::-webkit-scrollbar {
+      display: none;
+  }
+  .hide-scroll {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+  }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
