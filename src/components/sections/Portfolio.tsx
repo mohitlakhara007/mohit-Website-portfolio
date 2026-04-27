@@ -34,7 +34,7 @@ export default function Portfolio() {
   };
 
   return (
-    <section id="work" className="py-24 relative z-10 overflow-hidden bg-[var(--color-bg-light)]">
+    <section id="work" className="py-24 relative z-10 overflow-hidden bg-transparent">
       <div className="absolute inset-0 bg-dot-pattern opacity-50 mix-blend-multiply pointer-events-none" />
       
       <div className="max-w-[1400px] mx-auto px-6 md:px-12 relative z-10">
@@ -50,12 +50,12 @@ export default function Portfolio() {
             }
           }}
         >
-          <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } }} className="inline-block bg-[var(--color-brand-light)] px-5 py-2.5 rounded-full mb-6 text-xs text-[var(--color-brand)] font-bold tracking-wider shadow-sm uppercase">
+          <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } }} className="inline-block liquid-glass border border-white/40 px-5 py-2.5 rounded-full mb-6 text-xs text-[var(--color-text-main)] font-bold tracking-wider uppercase">
              MY PORTFOLIO
           </motion.div>
 
           <div className="flex flex-col xl:flex-row xl:items-end justify-between gap-10 mb-16 px-2">
-            <motion.h2 variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } }} className="text-4xl md:text-5xl lg:text-[4rem] font-display font-bold text-[var(--color-text-main)] max-w-md leading-[1.1]">
+            <motion.h2 variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } }} className="text-4xl md:text-5xl lg:text-[4rem] font-display font-bold text-[var(--color-text-main)] max-w-md leading-[1.1] tracking-tight">
               Work That Speaks For <span className="text-[var(--color-accent)]">Itself.</span>
             </motion.h2>
             
@@ -67,13 +67,13 @@ export default function Portfolio() {
                  <button
                    key={cat.name}
                    onClick={() => setActiveCategory(cat.name)}
-                   className={`flex items-center gap-2 px-5 py-3 md:px-6 md:py-3.5 rounded-full whitespace-nowrap transition-all duration-300 font-semibold border text-sm ${
+                   className={`flex items-center gap-2 px-5 py-3 md:px-6 md:py-3.5 rounded-full whitespace-nowrap transition-all duration-300 font-semibold text-sm ${
                      isActive 
-                       ? 'bg-[var(--color-brand)] text-white border-[var(--color-brand)] shadow-lg translate-y-[-2px]' 
-                       : 'bg-white/80 text-[var(--color-text-main)] border-black/10 hover:border-[var(--color-brand)]/50 hover:bg-white hover:text-[var(--color-brand)]'
+                       ? 'bg-[var(--color-accent)] text-white scale-105 shadow-[0_8px_24px_rgba(0,122,255,0.4)]' 
+                       : 'liquid-glass text-[var(--color-text-main)] hover:bg-white/40 dark:hover:bg-black/40 border border-transparent'
                    }`}
                  >
-                   <Icon size={16} className={isActive ? 'text-[var(--color-accent)]' : 'text-[var(--color-brand)]/70'} />
+                   <Icon size={16} className={isActive ? 'text-white' : 'text-gray-500'} />
                    {cat.name}
                  </button>
                )
@@ -86,13 +86,13 @@ export default function Portfolio() {
         <div className="relative group/wrapper mt-8">
           <button 
             onClick={() => scroll('left')} 
-            className="absolute left-2 md:-left-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 md:w-14 md:h-14 bg-white rounded-full flex items-center justify-center shadow-xl border border-black/5 text-[var(--color-brand)] hover:scale-110 hover:bg-[var(--color-brand)] hover:text-white transition-all duration-300"
+            className="absolute left-2 md:-left-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 md:w-14 md:h-14 liquid-glass rounded-full flex items-center justify-center text-[var(--color-text-main)] hover:scale-110 hover:bg-white/40 dark:hover:bg-black/40 transition-all duration-300"
           >
             <ChevronLeft size={24} />
           </button>
           <button 
              onClick={() => scroll('right')} 
-             className="absolute right-2 md:-right-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 md:w-14 md:h-14 bg-white rounded-full flex items-center justify-center shadow-xl border border-black/5 text-[var(--color-brand)] hover:scale-110 hover:bg-[var(--color-brand)] hover:text-white transition-all duration-300"
+             className="absolute right-2 md:-right-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 md:w-14 md:h-14 liquid-glass rounded-full flex items-center justify-center text-[var(--color-text-main)] hover:scale-110 hover:bg-white/40 dark:hover:bg-black/40 transition-all duration-300"
            >
             <ChevronRight size={24} />
           </button>

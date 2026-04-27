@@ -1,47 +1,96 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   
-  --color-bg-light: #F5F2ED;
-  --color-bg-dark: #1A1A1A;
-  --color-bg-card: rgba(0, 0, 0, 0.03);
-  --color-brand: #1F3D2B;
-  --color-brand-light: #DCE8DF;
-  --color-accent: #F47C2C;
-  --color-accent-glow: rgba(244, 124, 44, 0.5);
-  --color-text-main: #1A1A1A;
-  --color-text-muted: rgba(26, 26, 26, 0.6);
+  --color-bg-light: #F2F2F7; /* iOS 17 grouped background */
+  --color-bg-dark: #000000;
+  --color-bg-card: #FFFFFF;
+  --color-brand: #000000;
+  --color-brand-light: #E5E5EA;
+  --color-accent: #007AFF; /* iOS Blue */
+  --color-accent-glow: rgba(0, 122, 255, 0.3);
+  --color-text-main: #000000;
+  --color-text-muted: #8E8E93;
 }
 
 @layer base {
+  :root {
+    --glass-rgb: 255, 255, 255;
+    --glass-shadow: rgba(0, 0, 0, 0.08);
+  }
+
   body {
     @apply bg-[var(--color-bg-light)] text-[var(--color-text-main)] font-sans antialiased overflow-x-hidden selection:bg-[var(--color-accent)] selection:text-white;
     scroll-behavior: smooth;
+    letter-spacing: -0.01em;
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+  
+  body.dark {
+    --color-bg-light: #000000;
+    --color-bg-dark: #FFFFFF;
+    --color-bg-card: #1C1C1E;
+    --color-brand: #FFFFFF;
+    --color-brand-light: #2C2C2E;
+    --color-text-main: #FFFFFF;
+    --color-text-muted: #98989D;
+    --glass-rgb: 30, 30, 30;
+    --glass-shadow: rgba(0, 0, 0, 0.4);
+    color-scheme: dark;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display tracking-tight text-[var(--color-text-main)];
+    letter-spacing: -0.02em;
   }
 }
 
 @layer utilities {
   .bg-dot-pattern {
-    background-image: radial-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px);
+    background-image: radial-gradient(rgba(0, 0, 0, 0.06) 1px, transparent 1px);
     background-size: 24px 24px;
   }
   
+  body.dark .bg-dot-pattern {
+    background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  }
+  
   .liquid-glass {
-    background: rgba(255, 255, 255, 0.35);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
+    background: rgba(var(--glass-rgb), 0.45);
+    backdrop-filter: blur(40px) saturate(200%);
+    -webkit-backdrop-filter: blur(40px) saturate(200%);
+    border: 1px solid rgba(var(--glass-rgb), 0.4);
+    box-shadow: 0 8px 32px 0 var(--glass-shadow), inset 0 0 0 1px rgba(var(--glass-rgb), 0.2), inset 0 0 20px rgba(var(--glass-rgb), 0.3);
+    transition: background-color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
+  }
+  
+  .water-drop {
+    background: linear-gradient(135deg, rgba(var(--glass-rgb), 0.5) 0%, rgba(var(--glass-rgb), 0.1) 100%);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 1px solid rgba(var(--glass-rgb), 0.5);
+    box-shadow: 10px 10px 30px var(--glass-shadow), inset 5px 5px 20px rgba(var(--glass-rgb), 0.6), inset -5px -5px 20px rgba(0, 0, 0, 0.03);
+  }
+
+  @keyframes morph {
+    0% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+    50% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+    100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  }
+  
+  .animate-morph {
+    animation: morph 8s ease-in-out infinite alternate;
   }
   
   .glass {
-    background: rgba(255, 255, 255, 0.02);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
   }
   
   .glass-hover {
@@ -49,8 +98,9 @@
   }
   
   .glass-hover:hover {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.85);
+    border-color: rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
   }
   
   .text-glow {

@@ -38,7 +38,7 @@ export default function Navbar() {
         </a>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-8 px-8 py-2 rounded-full bg-white/40 shadow-inner border border-white/60">
+        <nav className="hidden md:flex items-center gap-8 px-8 py-2 rounded-full bg-white/40 dark:bg-black/40 shadow-inner border border-white/60">
           {navLinks.map((link) => (
             <a
               key={link.name}
@@ -59,10 +59,10 @@ export default function Navbar() {
         <div className="hidden lg:block relative z-50">
           <a
             href="#contact"
-            className="px-5 py-2.5 rounded-full bg-[var(--color-brand)] text-white text-sm font-semibold hover:bg-[#1a3324] transition-all duration-300 shadow-md flex items-center gap-2 group"
+            className="px-5 py-2.5 rounded-full bg-[#007AFF] text-white text-[13px] font-semibold tracking-wide hover:bg-[#0056b3] transition-all duration-300 shadow-[0_4px_12px_rgba(0,122,255,0.3)] flex items-center gap-2 group"
           >
             Let's Talk
-            <div className="w-5 h-5 rounded-full bg-[var(--color-accent)] flex items-center justify-center">
+            <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center">
                <ArrowRight size={12} className="text-white group-hover:translate-x-0.5 transition-transform" />
             </div>
           </a>
@@ -70,7 +70,7 @@ export default function Navbar() {
 
         {/* Mobile Toggle */}
         <button
-          className="md:hidden z-50 p-2 text-[var(--color-text-main)] bg-white/30 backdrop-blur-md border border-white/40 rounded-full shadow-sm"
+          className="md:hidden z-50 p-2 text-[var(--color-text-main)] bg-white/80 dark:bg-black/80 backdrop-blur-xl border border-black/5 rounded-full shadow-sm"
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? <X size={20} /> : <Menu size={20} />}
@@ -81,7 +81,7 @@ export default function Navbar() {
       <motion.div
         initial={false}
         animate={isOpen ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
-        className={`absolute top-full left-0 right-0 bg-[#F5F2ED] border-b border-black/5 p-6 lg:hidden transition-all duration-300 shadow-xl ${
+        className={`absolute top-full left-4 right-4 liquid-glass rounded-[32px] mt-4 p-8 lg:hidden transition-all duration-300 ${
           isOpen ? 'pointer-events-auto' : 'pointer-events-none'
         }`}
       >
@@ -92,7 +92,7 @@ export default function Navbar() {
               href={link.href}
               onClick={() => setIsOpen(false)}
               className={`text-2xl font-bold transition-colors ${
-                 link.active ? 'text-[var(--color-accent)]' : 'text-[var(--color-text-main)]'
+                 link.active ? 'text-[#007AFF]' : 'text-[var(--color-text-main)] hover:text-[#007AFF]'
               }`}
             >
               {link.name}
@@ -101,7 +101,7 @@ export default function Navbar() {
           <a
             href="#contact"
             onClick={() => setIsOpen(false)}
-            className="px-8 py-4 mt-6 rounded-full bg-[var(--color-brand)] text-white font-medium w-full text-center flex items-center justify-center gap-2"
+            className="px-8 py-4 mt-6 rounded-[20px] bg-[#007AFF] text-white font-semibold w-full text-center flex items-center justify-center gap-2 shadow-[0_8px_16px_rgba(0,122,255,0.25)]"
           >
             Let's Talk <ArrowRight size={18} />
           </a>

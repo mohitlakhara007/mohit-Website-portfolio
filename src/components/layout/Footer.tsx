@@ -2,7 +2,7 @@ import { motion } from 'motion/react';
 
 export default function Footer() {
   return (
-    <footer className="bg-[var(--color-brand)] pt-20 pb-10 relative z-10 text-white rounded-t-[3rem] mt-[-2rem]">
+    <footer className="bg-black pt-20 pb-10 relative z-10 text-white rounded-t-[48px] mt-[-2rem] border-t border-black/10">
       <motion.div 
         initial="hidden"
         whileInView="visible"
@@ -18,53 +18,53 @@ export default function Footer() {
            {/* Col 1 */}
            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}>
              <a href="#home" className="flex flex-col z-50 group no-underline text-left mb-6">
-               <span className="text-2xl md:text-3xl font-display font-bold text-white leading-tight flex items-start">
-                 Mohit Lakhara<span className="text-[var(--color-accent)] text-xl">*</span>
+               <span className="text-2xl md:text-3xl font-display font-bold text-white leading-tight flex items-start tracking-tight">
+                 Mohit Lakhara<span className="text-[#007AFF] text-xl ml-0.5">*</span>
                </span>
-               <span className="text-xs text-white/50 font-medium tracking-wide">Graphic & UI/UX Designer</span>
+               <span className="text-xs text-[#EBEBF5]/60 font-medium tracking-wide mt-1">Graphic & UI/UX Designer</span>
              </a>
-             <p className="text-white/60 text-sm leading-relaxed max-w-xs pr-4">
+             <p className="text-[#EBEBF5]/60 text-[15px] leading-relaxed max-w-xs pr-4 font-medium">
                 Designing is how I think. Every project is just me trying to say something clearly — without words.
              </p>
            </motion.div>
 
            {/* Col 2 */}
            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}>
-              <h4 className="font-bold text-base mb-6">Quick Links</h4>
+              <h4 className="font-bold text-base mb-6 text-white">Quick Links</h4>
               <ul className="space-y-3">
-                 <li><a href="#home" className="text-white/60 text-sm hover:text-white transition-colors">Home</a></li>
-                 <li><a href="#about" className="text-white/60 text-sm hover:text-white transition-colors">About</a></li>
-                 <li><a href="#work" className="text-white/60 text-sm hover:text-white transition-colors">Portfolio</a></li>
-                 <li><a href="#contact" className="text-white/60 text-sm hover:text-white transition-colors">Contact</a></li>
+                 <li><a href="#home" className="text-[#EBEBF5]/60 text-[15px] font-medium hover:text-white transition-colors">Home</a></li>
+                 <li><a href="#about" className="text-[#EBEBF5]/60 text-[15px] font-medium hover:text-white transition-colors">About</a></li>
+                 <li><a href="#work" className="text-[#EBEBF5]/60 text-[15px] font-medium hover:text-white transition-colors">Portfolio</a></li>
+                 <li><a href="#contact" className="text-[#EBEBF5]/60 text-[15px] font-medium hover:text-white transition-colors">Contact</a></li>
               </ul>
            </motion.div>
 
            {/* Col 3 */}
            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}>
-              <h4 className="font-bold text-base mb-6">Categories</h4>
+              <h4 className="font-bold text-base mb-6 text-white">Categories</h4>
               <ul className="space-y-3">
-                 <li><a href="#" className="text-white/60 text-sm hover:text-white transition-colors">Logofolio</a></li>
-                 <li><a href="#" className="text-white/60 text-sm hover:text-white transition-colors">Branding</a></li>
-                 <li><a href="#" className="text-white/60 text-sm hover:text-white transition-colors">Social Media</a></li>
-                 <li><a href="#" className="text-white/60 text-sm hover:text-white transition-colors">App Design</a></li>
+                 <li><a href="#" className="text-[#EBEBF5]/60 text-[15px] font-medium hover:text-white transition-colors">Logofolio</a></li>
+                 <li><a href="#" className="text-[#EBEBF5]/60 text-[15px] font-medium hover:text-white transition-colors">Branding</a></li>
+                 <li><a href="#" className="text-[#EBEBF5]/60 text-[15px] font-medium hover:text-white transition-colors">Social Media</a></li>
+                 <li><a href="#" className="text-[#EBEBF5]/60 text-[15px] font-medium hover:text-white transition-colors">App Design</a></li>
               </ul>
            </motion.div>
 
            {/* Col 4 */}
            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}>
-              <h4 className="font-bold text-base mb-6">Follow Me</h4>
+              <h4 className="font-bold text-base mb-6 text-white">Follow Me</h4>
               <ul className="space-y-3">
-                 <li><a href="#" className="text-white/60 text-sm hover:text-white transition-colors">Instagram</a></li>
-                 <li><a href="#" className="text-white/60 text-sm hover:text-white transition-colors">LinkedIn</a></li>
-                 <li><a href="#" className="text-white/60 text-sm hover:text-white transition-colors">Behance</a></li>
+                 <li><a href="#" className="text-[#EBEBF5]/60 text-[15px] font-medium hover:text-white transition-colors">Instagram</a></li>
+                 <li><a href="#" className="text-[#EBEBF5]/60 text-[15px] font-medium hover:text-white transition-colors">LinkedIn</a></li>
+                 <li><a href="#" className="text-[#EBEBF5]/60 text-[15px] font-medium hover:text-white transition-colors">Behance</a></li>
               </ul>
            </motion.div>
         </div>
 
-        <motion.div variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }} className="flex flex-col md:flex-row justify-between items-center gap-6 pt-8 border-t border-white/10 text-white/40 text-xs font-semibold">
+        <motion.div variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }} className="flex flex-col md:flex-row justify-between items-center gap-6 pt-8 border-t border-white/10 text-[#EBEBF5]/40 text-[13px] font-medium tracking-wide">
           <p>&copy; {new Date().getFullYear()} Mohit Lakhara. All rights reserved.</p>
           <div className="flex items-center gap-2">
-            Made with passion <span className="text-[var(--color-accent)] animate-pulse">❤️</span>
+            Made with passion <span className="text-[#FF2D55] animate-pulse">❤️</span>
           </div>
         </motion.div>
       </motion.div>
