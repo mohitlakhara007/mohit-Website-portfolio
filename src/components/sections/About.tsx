@@ -4,44 +4,13 @@ export default function About() {
   const skills = ["Graphic Design", "UI/UX Design", "Branding", "Social Media", "Typography"];
 
   return (
-    <section id="about" className="relative py-24 w-full">
+    <section id="about" className="relative py-[50px] md:py-[100px] w-full bg-[var(--color-bg-light)]">
       
-      <div className="max-w-[1200px] mx-auto px-6 relative z-10 flex flex-col md:flex-row items-center gap-16 md:gap-24">
+      <div className="max-w-[1400px] mx-auto px-6 md:px-12 relative z-10 flex flex-col md:flex-row items-start gap-16 md:gap-24">
         
-        {/* Left Side: Profile Image area */}
-        <div className="w-full md:w-5/12 relative flex items-center justify-center">
-          {/* Green backing square */}
-          <motion.div 
-            initial={{ scale: 0.8, opacity: 0, rotate: 0 }}
-            whileInView={{ scale: 1, opacity: 1, rotate: -3 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="absolute top-8 w-[90%] h-[90%] bg-[#E5E5EA] rounded-[48px] -z-10 shadow-inner" 
-          />
-          
-          <motion.div 
-            initial={{ y: 50, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8 }}
-            className="relative liquid-glass p-3 pb-8 md:p-4 md:pb-12 -rotate-2 hover:rotate-0 transition-transform duration-500 rounded-[32px]"
-          >
-             {/* Profile image container */}
-             <div className="w-full aspect-[4/5] bg-gray-200 overflow-hidden relative shadow-inner rounded-[24px]">
-               <img 
-                 src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2664&auto=format&fit=crop" 
-                 alt="Abstract Design" 
-                 className="w-full h-full object-cover opacity-90 transition-transform duration-700 hover:scale-105"
-               />
-               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
-             </div>
-          </motion.div>
-          
-        </div>
-
-        {/* Right Side: Text Reveal */}
+        {/* Left Side: Text Reveal */}
         <motion.div 
-          className="w-full md:w-7/12 relative pl-0 md:pl-8"
+          className="w-full md:w-[50%] relative"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
@@ -53,52 +22,77 @@ export default function About() {
              }
           }}
         >
-
           <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } }}>
-            <div className="inline-block liquid-glass border border-white/40 px-5 py-2.5 rounded-full mb-6 text-xs text-[var(--color-text-main)] font-bold tracking-wider uppercase">
-               ABOUT ME
+            <div className="inline-block border border-[var(--color-text-main)] px-4 py-1.5 rounded-full mb-8 text-[11px] text-[var(--color-text-main)] font-semibold tracking-[0.2em] uppercase">
+               About Me
             </div>
           </motion.div>
 
-          <motion.h2 variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } }} className="text-4xl md:text-5xl lg:text-[4rem] font-display font-bold text-[var(--color-text-main)] mb-8 leading-[1.05] tracking-tight">
-            Turning Ideas Into <br className="hidden lg:block" />
-            <span className="text-[var(--color-accent)] relative inline-block">
-               Meaningful
-               <svg className="absolute w-full h-3 -bottom-2 left-0 text-[#007AFF] opacity-30" viewBox="0 0 100 10" preserveAspectRatio="none">
-                 <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="2" fill="none" />
-               </svg>
-            </span> Design.
+          <motion.h2 variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } }} className="text-4xl md:text-5xl lg:text-7xl font-display font-bold text-[var(--color-text-main)] mb-10 leading-[0.9] tracking-tighter uppercase">
+            Turning Ideas <br />
+            <span className="italic font-light text-[var(--color-text-main)]">
+               Into Reality.
+            </span>
           </motion.h2>
 
-          <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } }} className="space-y-6 text-lg md:text-xl text-[var(--color-text-muted)] font-medium leading-relaxed max-w-xl">
+          <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } }} className="space-y-8 text-base md:text-lg text-[var(--color-text-main)] font-medium leading-relaxed max-w-xl">
             <p>
               Hey! I'm a graphic and UI/UX designer from Surat — currently doing my BCA and spending most of my free time designing things I actually care about.
             </p>
             <p>
               I like making things that look good and actually work well. Whether it's a logo, a mobile screen, or a social media post — I try to keep it clean, intentional, and real.
             </p>
-            <div className="relative pt-4 pb-2">
-               <div className="absolute left-0 top-6 bottom-4 w-1 bg-[#007AFF] rounded-full shadow-[0_0_8px_rgba(0,122,255,0.5)]" />
-               <p className="italic text-[var(--color-text-main)] font-display text-2xl font-semibold opacity-90 pl-6 py-1 tracking-tight">
+            <div className="relative pt-6 pb-2 border-t border-[var(--color-text-main)]">
+               <p className="italic text-[var(--color-text-main)] font-display text-2xl font-medium opacity-90 tracking-tight">
                  "Designing is how I think. Every project is just me trying to say something clearly — without words."
                </p>
             </div>
           </motion.div>
 
-          <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } }} className="flex flex-wrap gap-x-3 gap-y-4 mt-12 liquid-glass p-6 rounded-[32px] border-white/40">
-            <div className="w-full text-xs font-bold text-gray-500 tracking-widest uppercase mb-2 ml-2">My Core Skills</div>
-            {skills.map((skill, index) => (
-              <motion.span 
-                key={skill}
-                whileHover={{ scale: 1.05, y: -2 }}
-                className="px-5 py-2.5 rounded-full text-sm font-semibold liquid-glass text-[var(--color-text-main)] flex items-center gap-2 cursor-pointer transition-colors hover:border-[#007AFF]/50 hover:text-[#007AFF] hover:bg-white/60 dark:hover:bg-black/60"
-              >
-                <div className="w-2 h-2 rounded-full bg-[#007AFF]"></div>
-                {skill}
-              </motion.span>
-            ))}
+          <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } }} className="mt-12 pt-8 border-t border-b border-[var(--color-text-main)] pb-8 relative overflow-hidden group">
+            <div className="w-full text-[10px] font-bold text-[var(--color-text-main)] tracking-[0.2em] uppercase mb-6">Core Skills</div>
+            
+            <div className="relative flex overflow-hidden">
+               {/* Left and Right Fade masks */}
+               <div className="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-[var(--color-bg-light)] to-transparent z-10 pointer-events-none" />
+               <div className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-[var(--color-bg-light)] to-transparent z-10 pointer-events-none" />
+               
+               <div className="flex w-max animate-marquee group-hover:[animation-play-state:paused]">
+                 {[...Array(2)].map((_, i) => (
+                   <div key={i} className="flex items-center justify-around gap-8 pr-8 pointer-events-auto">
+                     {skills.map((skill, index) => (
+                       <span key={`${i}-${index}`} className="flex items-center gap-8 cursor-pointer">
+                         <span className="text-2xl md:text-3xl font-display font-medium text-[var(--color-text-main)] uppercase tracking-tight hover:italic transition-all duration-300">
+                           {skill}
+                         </span>
+                         <span className="text-[var(--color-text-main)] opacity-30 text-lg">✦</span>
+                       </span>
+                     ))}
+                   </div>
+                 ))}
+               </div>
+            </div>
           </motion.div>
         </motion.div>
+
+        {/* Right Side: Profile Image area */}
+        <div className="w-full md:w-[50%] relative flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-700">
+          <motion.div 
+            initial={{ scale: 0.95, opacity: 0 }}
+            whileInView={{ scale: 1, opacity: 1 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8 }}
+            className="relative w-full aspect-[4/5] overflow-hidden group"
+          >
+             <img 
+               src="https://plain-apac-prod-public.komododecks.com/202604/27/sUr4GJHq2qOap0mzoUAJ/image.jpg" 
+               alt="Mohit Lakhara" 
+               className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+             />
+             {/* minimalist corner accent */}
+             <div className="absolute top-0 right-0 w-16 h-16 border-t-4 border-r-4 border-[var(--color-text-main)] m-6" />
+          </motion.div>
+        </div>
 
       </div>
     </section>

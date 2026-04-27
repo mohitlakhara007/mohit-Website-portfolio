@@ -1,119 +1,72 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-display: "Space Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   
-  --color-bg-light: #F2F2F7; /* iOS 17 grouped background */
+  --color-bg-light: #FFFFFF;
   --color-bg-dark: #000000;
-  --color-bg-card: #FFFFFF;
+  --color-bg-card: #F9F9F9;
   --color-brand: #000000;
-  --color-brand-light: #E5E5EA;
-  --color-accent: #007AFF; /* iOS Blue */
-  --color-accent-glow: rgba(0, 122, 255, 0.3);
+  --color-brand-light: #E5E5E5;
+  --color-accent: #000000;
+  --color-accent-glow: rgba(0, 0, 0, 0.1);
   --color-text-main: #000000;
-  --color-text-muted: #8E8E93;
+  --color-text-muted: #888888;
 }
 
 @layer base {
   :root {
     --glass-rgb: 255, 255, 255;
-    --glass-shadow: rgba(0, 0, 0, 0.08);
+    --glass-shadow: rgba(0, 0, 0, 0.04);
   }
 
   body {
-    @apply bg-[var(--color-bg-light)] text-[var(--color-text-main)] font-sans antialiased overflow-x-hidden selection:bg-[var(--color-accent)] selection:text-white;
+    @apply bg-[var(--color-bg-light)] text-[var(--color-text-main)] font-sans antialiased overflow-x-hidden selection:bg-[var(--color-text-main)] selection:text-[var(--color-bg-light)];
     scroll-behavior: smooth;
     letter-spacing: -0.01em;
-    transition: background-color 0.5s ease, color 0.5s ease;
+    transition: background-color 0s ease, color 0s ease;
   }
   
   body.dark {
     --color-bg-light: #000000;
     --color-bg-dark: #FFFFFF;
-    --color-bg-card: #1C1C1E;
+    --color-bg-card: #0A0A0A;
     --color-brand: #FFFFFF;
-    --color-brand-light: #2C2C2E;
+    --color-brand-light: #222222;
     --color-text-main: #FFFFFF;
-    --color-text-muted: #98989D;
-    --glass-rgb: 30, 30, 30;
-    --glass-shadow: rgba(0, 0, 0, 0.4);
+    --color-text-muted: #888888;
+    --glass-rgb: 0, 0, 0;
+    --glass-shadow: rgba(255, 255, 255, 0.05);
     color-scheme: dark;
   }
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-display tracking-tight text-[var(--color-text-main)];
-    letter-spacing: -0.02em;
+    letter-spacing: -0.03em;
   }
 }
 
 @layer utilities {
   .bg-dot-pattern {
-    background-image: radial-gradient(rgba(0, 0, 0, 0.06) 1px, transparent 1px);
+    background-image: radial-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px);
     background-size: 24px 24px;
+    background-position: -12px -12px;
   }
   
   body.dark .bg-dot-pattern {
-    background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
   }
   
   .liquid-glass {
-    background: rgba(var(--glass-rgb), 0.45);
-    backdrop-filter: blur(40px) saturate(200%);
-    -webkit-backdrop-filter: blur(40px) saturate(200%);
-    border: 1px solid rgba(var(--glass-rgb), 0.4);
-    box-shadow: 0 8px 32px 0 var(--glass-shadow), inset 0 0 0 1px rgba(var(--glass-rgb), 0.2), inset 0 0 20px rgba(var(--glass-rgb), 0.3);
-    transition: background-color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
+    background: transparent;
+    border: 1px solid var(--color-text-main);
+    transition: all 0.2s ease;
   }
   
   .water-drop {
-    background: linear-gradient(135deg, rgba(var(--glass-rgb), 0.5) 0%, rgba(var(--glass-rgb), 0.1) 100%);
-    backdrop-filter: blur(30px);
-    -webkit-backdrop-filter: blur(30px);
-    border: 1px solid rgba(var(--glass-rgb), 0.5);
-    box-shadow: 10px 10px 30px var(--glass-shadow), inset 5px 5px 20px rgba(var(--glass-rgb), 0.6), inset -5px -5px 20px rgba(0, 0, 0, 0.03);
-  }
-
-  @keyframes morph {
-    0% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
-    50% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
-    100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
-  }
-  
-  .animate-morph {
-    animation: morph 8s ease-in-out infinite alternate;
-  }
-  
-  .glass {
-    background: rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
-  }
-  
-  .glass-hover {
-    transition: all 0.3s ease;
-  }
-  
-  .glass-hover:hover {
-    background: rgba(255, 255, 255, 0.85);
-    border-color: rgba(0, 0, 0, 0.08);
-    transform: translateY(-2px);
-  }
-  
-  .text-glow {
-    text-shadow: 0 0 20px var(--color-accent-glow);
-  }
-  
-  .box-glow {
-    box-shadow: 0 0 40px -10px var(--color-accent-glow);
-  }
-  
-  .mask-edge {
-    mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
-    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    display: none;
   }
 
   .no-scrollbar::-webkit-scrollbar {
@@ -135,6 +88,15 @@
 
 @keyframes float {
   0% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+  50% { transform: translateY(-5px); }
   100% { transform: translateY(0px); }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 20s linear infinite;
 }
