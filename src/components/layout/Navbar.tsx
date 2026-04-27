@@ -33,7 +33,7 @@ export default function Navbar() {
         
         <a href="#home" className="flex flex-col z-50 group no-underline">
           <span className="text-xl font-display font-bold text-[var(--color-text-main)] leading-tight flex items-start">
-            Mohit<span className="text-[var(--color-accent)]">*</span>
+            Mohitdznr<span className="text-[var(--color-accent)]">*</span>
           </span>
         </a>
 

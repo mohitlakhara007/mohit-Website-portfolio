@@ -1,6 +1,5 @@
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
-import ScrollPath from './components/layout/ScrollPath';
 import FluidBackground from './components/layout/FluidBackground';
 import FloatingControls from './components/layout/FloatingControls';
 import Hero from './components/sections/Hero';
@@ -13,7 +12,6 @@ export default function App() {
   return (
     <div className="bg-transparent min-h-screen text-[var(--color-text-main)] font-sans relative">
       <FluidBackground />
-      <ScrollPath />
       <FloatingControls />
       <Navbar />
       <main>

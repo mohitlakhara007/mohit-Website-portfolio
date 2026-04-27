@@ -10,22 +10,10 @@ export default function Hero() {
       className="relative min-h-[100svh] w-full flex items-center justify-center pt-24 pb-12 overflow-hidden bg-transparent"
     >
       
-      {/* 3D-like Animated Morphing Glass Blobs */}
-      <motion.div 
-        animate={{ y: [0, -40, 0], rotate: [0, 90, 0], scale: [1, 1.1, 1] }} 
-        transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-        className="absolute top-[20%] left-[10%] w-48 h-48 water-drop animate-morph z-0 hidden md:block"
-      />
-      <motion.div 
-        animate={{ y: [0, 50, 0], rotate: [360, 180, 0], scale: [1, 1.2, 1] }} 
-        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-        className="absolute bottom-[20%] right-[10%] w-64 h-64 water-drop animate-morph z-0 hidden md:block opacity-80"
-      />
-      <motion.div 
-        animate={{ x: [0, 60, 0], y: [0, -40, 0], rotate: [0, -360] }} 
-        transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
-        className="absolute top-[60%] left-[70%] w-32 h-32 water-drop animate-morph z-0 hidden md:block opacity-60"
-      />
+      {/* 3D-like Morphing Glass Blobs (Static for performance) */}
+      <div className="absolute top-[20%] left-[10%] w-48 h-48 water-drop z-0 hidden md:block rounded-full" />
+      <div className="absolute bottom-[20%] right-[10%] w-64 h-64 water-drop z-0 hidden md:block opacity-80 rounded-full" />
+      <div className="absolute top-[60%] left-[70%] w-32 h-32 water-drop z-0 hidden md:block opacity-60 rounded-full" />
       
       {/* Social Links sidebar (absolute left) */}
       <div className="hidden xl:flex absolute left-8 top-1/2 -translate-y-1/2 flex-col gap-6 z-30">
