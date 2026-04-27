@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
-import { motion } from 'motion/react';
-import { ChevronLeft, ChevronRight, PenTool, Star, Instagram, PlaySquare, Package, Printer, Smartphone, Monitor, ArrowRight } from 'lucide-react';
+import { motion, useScroll, useSpring } from 'motion/react';
+import { PenTool, Star, Instagram, PlaySquare, Package, Printer, Smartphone, Monitor, ArrowRight } from 'lucide-react';
 import { FaYoutube } from 'react-icons/fa';
 
 const categories = [
@@ -33,11 +33,21 @@ const portfolioData: PortfolioItem[] = [
 
 export default function Portfolio() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const { scrollXProgress } = useScroll({ container: scrollContainerRef });
+  const scaleX = useSpring(scrollXProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
 
-  const scroll = (direction: 'left' | 'right') => {
+  const handleLineClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (scrollContainerRef.current) {
-      const scrollAmount = direction === 'left' ? -400 : 400;
-      scrollContainerRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+      const rect = e.currentTarget.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const percentage = x / rect.width;
+      const container = scrollContainerRef.current;
+      const scrollWidth = container.scrollWidth - container.clientWidth;
+      container.scrollTo({ left: scrollWidth * percentage, behavior: 'smooth' });
     }
   };
 
@@ -83,19 +93,6 @@ export default function Portfolio() {
 
         {/* Carousel */}
         <div className="relative group/wrapper mt-12">
-          <button 
-            onClick={() => scroll('left')} 
-            className="absolute left-2 md:-left-6 top-1/2 -translate-y-1/2 z-20 w-14 h-14 bg-[var(--color-bg-light)] border border-[var(--color-text-main)] flex items-center justify-center text-[var(--color-text-main)] hover:bg-[var(--color-text-main)] hover:text-[var(--color-bg-light)] transition-colors duration-300"
-          >
-            <ChevronLeft size={24} />
-          </button>
-          <button 
-             onClick={() => scroll('right')} 
-             className="absolute right-2 md:-right-6 top-1/2 -translate-y-1/2 z-20 w-14 h-14 bg-[var(--color-bg-light)] border border-[var(--color-text-main)] flex items-center justify-center text-[var(--color-text-main)] hover:bg-[var(--color-text-main)] hover:text-[var(--color-bg-light)] transition-colors duration-300"
-           >
-            <ChevronRight size={24} />
-          </button>
-
           <div 
             ref={scrollContainerRef}
             className="flex gap-8 overflow-x-auto hide-scroll snap-x snap-mandatory py-4 px-2"
@@ -142,18 +139,29 @@ export default function Portfolio() {
                       href={item.link} 
                       target="_blank" 
                       rel="noopener noreferrer" 
-                      className="block relative w-[80vw] md:w-[400px] lg:w-[450px] aspect-[4/5] overflow-hidden group/card bg-[var(--color-text-muted)] snap-center shrink-0 border border-[var(--color-text-main)] grayscale hover:grayscale-0 transition-all duration-700"
+                      className="block relative w-[80vw] md:w-[400px] lg:w-[450px] aspect-[4/5] overflow-hidden group/card bg-[var(--color-text-muted)] snap-center shrink-0 border border-[var(--color-text-main)] transition-all duration-700"
                     >
                       {content}
                     </a>
                   ) : (
-                    <div className="relative w-[80vw] md:w-[400px] lg:w-[450px] aspect-[4/5] overflow-hidden group/card bg-[var(--color-text-muted)] snap-center shrink-0 border border-[var(--color-text-main)] grayscale hover:grayscale-0 transition-all duration-700">
+                    <div className="relative w-[80vw] md:w-[400px] lg:w-[450px] aspect-[4/5] overflow-hidden group/card bg-[var(--color-text-muted)] snap-center shrink-0 border border-[var(--color-text-main)] transition-all duration-700">
                       {content}
                     </div>
                   )}
                 </motion.div>
               );
             })}
+          </div>
+
+          {/* Location Line Animation / Custom Scrollbar */}
+          <div 
+            className="w-full max-w-2xl mx-auto h-[2px] bg-[var(--color-text-main)] overflow-hidden bg-opacity-20 relative mt-16 cursor-pointer"
+            onClick={handleLineClick}
+          >
+             <motion.div 
+               style={{ scaleX }} 
+               className="absolute top-0 left-0 bottom-0 w-full bg-[var(--color-text-main)] origin-left pointer-events-none" 
+             />
           </div>
         </div>
 

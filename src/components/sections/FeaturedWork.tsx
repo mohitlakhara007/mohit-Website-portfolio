@@ -60,7 +60,7 @@ export default function FeaturedWork() {
           </div>
 
           {/* Right image box inside card */}
-          <a href="https://www.behance.net/gallery/238787187/Svarah-jewellery-Branding" target="_blank" rel="noopener noreferrer" className="w-full md:w-[60%] relative bg-[var(--color-text-muted)] min-h-[400px] md:min-h-full overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-700 block">
+          <a href="https://www.behance.net/gallery/238787187/Svarah-jewellery-Branding" target="_blank" rel="noopener noreferrer" className="w-full md:w-[60%] relative bg-[var(--color-text-muted)] min-h-[400px] md:min-h-full overflow-hidden transition-all duration-700 block">
             <img 
                src="https://mir-s3-cdn-cf.behance.net/projects/max_808/a954f9238787187.Y3JvcCw5ODEsNzY4LDE3LDA.jpg" 
                alt="Svarah Jewellery Branding" 

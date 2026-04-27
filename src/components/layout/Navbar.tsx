@@ -53,7 +53,9 @@ export default function Navbar() {
           {/* Desktop Contact Button */}
           <div className="hidden lg:block relative z-50">
             <a
-              href="#contact"
+              href="https://wa.me/message/IGYFQLBM4O4GC1"
+              target="_blank"
+              rel="noopener noreferrer"
               className="px-6 py-3 bg-[var(--color-text-main)] text-[var(--color-bg-light)] text-[13px] font-medium tracking-wider hover:opacity-80 transition-all flex items-center gap-3 group border border-transparent"
             >
               Lets Talk
@@ -92,7 +94,9 @@ export default function Navbar() {
                 <a href="https://www.behance.net/mohitlakharadesigner" target="_blank" rel="noopener noreferrer" onClick={() => setIsOpen(false)}>Behance</a>
               </div>
               <a 
-                href="#contact"
+                href="https://wa.me/message/IGYFQLBM4O4GC1"
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={() => setIsOpen(false)}
                 className="px-6 py-4 mt-4 bg-[var(--color-text-main)] text-[var(--color-bg-light)] font-medium w-full text-center flex items-center justify-center gap-3 border border-transparent"
               >
