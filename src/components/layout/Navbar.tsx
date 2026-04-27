@@ -29,7 +29,7 @@ export default function Navbar() {
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       className={`fixed top-4 left-0 right-0 z-50 flex justify-center w-full px-4 sm:px-6 transition-all duration-500`}
     >
-      <div className={`relative flex items-center justify-between w-full max-w-5xl px-6 py-3 md:py-4 rounded-full transition-all duration-500 ${isScrolled ? 'bg-[#F5F2ED]/80 backdrop-blur-xl shadow-lg border border-black/10' : 'bg-transparent'}`}>
+      <div className={`relative flex items-center justify-between w-full max-w-5xl px-6 py-3 md:py-4 rounded-full transition-all duration-500 ${isScrolled ? 'liquid-glass' : 'bg-transparent'}`}>
         
         <a href="#home" className="flex flex-col z-50 group no-underline">
           <span className="text-xl font-display font-bold text-[var(--color-text-main)] leading-tight flex items-start">
@@ -58,7 +58,7 @@ export default function Navbar() {
         {/* Desktop Contact Button */}
         <div className="hidden lg:block relative z-50">
           <a
-            href="mailto:mohitlakhara007061@gmail.com"
+            href="#contact"
             className="px-5 py-2.5 rounded-full bg-[var(--color-brand)] text-white text-sm font-semibold hover:bg-[#1a3324] transition-all duration-300 shadow-md flex items-center gap-2 group"
           >
             Let's Talk
@@ -70,7 +70,7 @@ export default function Navbar() {
 
         {/* Mobile Toggle */}
         <button
-          className="md:hidden z-50 p-2 text-[var(--color-text-main)] bg-white/50 rounded-full shadow-sm"
+          className="md:hidden z-50 p-2 text-[var(--color-text-main)] bg-white/30 backdrop-blur-md border border-white/40 rounded-full shadow-sm"
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? <X size={20} /> : <Menu size={20} />}
@@ -99,7 +99,7 @@ export default function Navbar() {
             </a>
           ))}
           <a
-            href="mailto:mohitlakhara007061@gmail.com"
+            href="#contact"
             onClick={() => setIsOpen(false)}
             className="px-8 py-4 mt-6 rounded-full bg-[var(--color-brand)] text-white font-medium w-full text-center flex items-center justify-center gap-2"
           >

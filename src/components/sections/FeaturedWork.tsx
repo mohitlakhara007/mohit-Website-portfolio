@@ -3,7 +3,7 @@ import { Play } from 'lucide-react';
 
 export default function FeaturedWork() {
   return (
-    <section className="py-24 relative overflow-hidden bg-[var(--color-bg-light)]">
+    <section id="featured" className="py-24 relative overflow-hidden bg-[var(--color-bg-light)]">
       <div className="absolute inset-0 bg-dot-pattern opacity-50 mix-blend-multiply pointer-events-none" />
       
       <div className="max-w-[1400px] mx-auto px-6 md:px-12 flex flex-col xl:flex-row gap-12 items-start relative z-10">

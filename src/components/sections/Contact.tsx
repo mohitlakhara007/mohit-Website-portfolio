@@ -28,7 +28,7 @@ export default function Contact() {
           </motion.h2>
         </motion.div>
 
-        {/* Right Side Cards */}
+        {/* Right Side */}
         <motion.div 
           initial="hidden"
           whileInView="visible"
@@ -37,8 +37,9 @@ export default function Contact() {
              hidden: { opacity: 0 },
              visible: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.2 } }
           }}
-          className="xl:w-3/4 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+          className="xl:w-3/4 w-full flex flex-col gap-8"
         >
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           
           {/* Email Card */}
           <motion.a 
@@ -102,32 +103,40 @@ export default function Contact() {
                </div>
             </div>
           </motion.a>
+          </div>
 
-          {/* Start Project Card (Dark Green) */}
+          {/* Contact Form */}
           <motion.div 
-            variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 50 } } }}
-            whileHover={{ y: -5, transition: { duration: 0.2 } }}
-            className="bg-[var(--color-brand)] rounded-3xl p-8 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between min-h-[220px] relative overflow-hidden text-white"
+            variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } }}
+            className="bg-white rounded-[2rem] p-8 md:p-10 border border-black/5 shadow-sm w-full"
           >
-            {/* Top right texture dot */}
-            <div className="absolute top-6 right-6 w-1 h-1 rounded-full bg-white/20"></div>
+          <form action="https://api.web3forms.com/submit" method="POST">
+            <h3 className="text-2xl font-bold font-display text-[var(--color-text-main)] mb-8">Send a Message</h3>
             
-            <div className="w-10 h-10 rounded-full flex items-center justify-start text-[var(--color-accent)]">
-               <PiPaperPlaneRightFill size={24} />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              <input type="hidden" name="access_key" value="089b903b-ef19-4cfc-8d0f-2c49f38ef1e3" />
+              <div className="flex flex-col gap-2">
+                <label htmlFor="name" className="text-sm font-semibold text-gray-600">Name</label>
+                <input type="text" name="name" id="name" required placeholder="John Doe" className="px-5 py-4 rounded-xl bg-gray-50 border border-gray-100 focus:outline-none focus:border-[var(--color-brand)] focus:ring-1 focus:ring-[var(--color-brand)] transition-all w-full" />
+              </div>
+              <div className="flex flex-col gap-2">
+                <label htmlFor="email" className="text-sm font-semibold text-gray-600">Your Email</label>
+                <input type="email" name="email" id="email" required placeholder="john@example.com" className="px-5 py-4 rounded-xl bg-gray-50 border border-gray-100 focus:outline-none focus:border-[var(--color-brand)] focus:ring-1 focus:ring-[var(--color-brand)] transition-all w-full" />
+              </div>
             </div>
-            <div className="mt-4">
-               <h4 className="font-bold text-sm mb-1">Start a Project</h4>
-               <p className="text-white/70 text-sm leading-snug pr-4">Let's create something amazing together.</p>
+
+            <div className="flex flex-col gap-2 mb-8">
+              <label htmlFor="message" className="text-sm font-semibold text-gray-600">Your Message</label>
+              <textarea id="message" name="message" rows={4} required placeholder="How can I help you?" className="px-5 py-4 rounded-xl bg-gray-50 border border-gray-100 focus:outline-none focus:border-[var(--color-brand)] focus:ring-1 focus:ring-[var(--color-brand)] transition-all w-full resize-none"></textarea>
             </div>
-            <div className="mt-6 flex justify-between items-center">
-               <button className="bg-white text-[var(--color-brand)] text-xs font-bold px-4 py-2 rounded-full flex items-center gap-2">
-                 Mail Me 
-                 <div className="w-4 h-4 bg-[var(--color-accent)] rounded-full text-white flex items-center justify-center"><span className="text-[8px] font-black">i</span></div>
-               </button>
-               <div className="text-[var(--color-accent)]">
-                 <ArrowRight size={20} />
-               </div>
-            </div>
+
+            <button type="submit" className="px-8 py-4 bg-[var(--color-brand)] text-white font-bold rounded-full hover:bg-[#1a3324] transition-colors flex items-center gap-3 group shadow-sm inline-flex">
+              Submit Message
+              <div className="w-8 h-8 rounded-full bg-[var(--color-accent)] flex items-center justify-center group-hover:scale-110 transition-transform">
+                <PiPaperPlaneRightFill className="text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              </div>
+            </button>
+          </form>
           </motion.div>
 
         </motion.div>

@@ -54,12 +54,12 @@ export default function Portfolio() {
              MY PORTFOLIO
           </motion.div>
 
-          <div className="flex flex-col xl:flex-row xl:items-end justify-between gap-10 mb-16">
+          <div className="flex flex-col xl:flex-row xl:items-end justify-between gap-10 mb-16 px-2">
             <motion.h2 variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } }} className="text-4xl md:text-5xl lg:text-[4rem] font-display font-bold text-[var(--color-text-main)] max-w-md leading-[1.1]">
               Work That Speaks For <span className="text-[var(--color-accent)]">Itself.</span>
             </motion.h2>
             
-            <motion.div variants={{ hidden: { opacity: 0, x: 30 }, visible: { opacity: 1, x: 0, transition: { duration: 0.6 } } }} className="flex overflow-x-auto hide-scroll gap-3 pb-4">
+            <motion.div variants={{ hidden: { opacity: 0, x: 30 }, visible: { opacity: 1, x: 0, transition: { duration: 0.6 } } }} className="flex overflow-x-auto hide-scroll gap-3 pb-4 xl:max-w-3xl xl:flex-wrap xl:justify-end">
             {categories.map(cat => {
                const Icon = cat.icon;
                const isActive = activeCategory === cat.name;
@@ -67,13 +67,13 @@ export default function Portfolio() {
                  <button
                    key={cat.name}
                    onClick={() => setActiveCategory(cat.name)}
-                   className={`flex items-center gap-2 px-6 py-3.5 rounded-full whitespace-nowrap transition-all duration-300 font-semibold border ${
+                   className={`flex items-center gap-2 px-5 py-3 md:px-6 md:py-3.5 rounded-full whitespace-nowrap transition-all duration-300 font-semibold border text-sm ${
                      isActive 
-                       ? 'bg-[var(--color-brand)] text-white border-[var(--color-brand)] shadow-md translate-y-[-2px]' 
-                       : 'bg-white text-[var(--color-text-main)] border-black/5 hover:border-black/20 hover:bg-gray-50'
+                       ? 'bg-[var(--color-brand)] text-white border-[var(--color-brand)] shadow-lg translate-y-[-2px]' 
+                       : 'bg-white/80 text-[var(--color-text-main)] border-black/10 hover:border-[var(--color-brand)]/50 hover:bg-white hover:text-[var(--color-brand)]'
                    }`}
                  >
-                   <Icon size={16} className={isActive ? 'text-[var(--color-accent)]' : 'text-gray-400'} />
+                   <Icon size={16} className={isActive ? 'text-[var(--color-accent)]' : 'text-[var(--color-brand)]/70'} />
                    {cat.name}
                  </button>
                )
@@ -83,16 +83,16 @@ export default function Portfolio() {
         </motion.div>
 
         {/* Carousel */}
-        <div className="relative group/wrapper">
+        <div className="relative group/wrapper mt-8">
           <button 
             onClick={() => scroll('left')} 
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 z-20 w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg border border-black/5 text-[var(--color-brand)] hover:scale-105 transition-transform"
+            className="absolute left-2 md:-left-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 md:w-14 md:h-14 bg-white rounded-full flex items-center justify-center shadow-xl border border-black/5 text-[var(--color-brand)] hover:scale-110 hover:bg-[var(--color-brand)] hover:text-white transition-all duration-300"
           >
             <ChevronLeft size={24} />
           </button>
           <button 
              onClick={() => scroll('right')} 
-             className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 z-20 w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg border border-black/5 text-[var(--color-brand)] hover:scale-105 transition-transform"
+             className="absolute right-2 md:-right-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 md:w-14 md:h-14 bg-white rounded-full flex items-center justify-center shadow-xl border border-black/5 text-[var(--color-brand)] hover:scale-110 hover:bg-[var(--color-brand)] hover:text-white transition-all duration-300"
            >
             <ChevronRight size={24} />
           </button>
@@ -127,7 +127,7 @@ export default function Portfolio() {
         </div>
 
         <div className="mt-12 text-center">
-          <a href="#" className="inline-flex items-center gap-2 text-[var(--color-brand)] font-bold text-lg hover:text-[var(--color-accent)] transition-colors group">
+          <a href="https://www.behance.net/mohitlakharadesigner" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-[var(--color-brand)] font-bold text-lg hover:text-[var(--color-accent)] transition-colors group">
             View All Projects
             <div className="w-6 h-6 rounded-full bg-[var(--color-accent)] flex items-center justify-center">
                <ChevronRight className="text-white group-hover:translate-x-0.5 transition-transform" size={14} />
