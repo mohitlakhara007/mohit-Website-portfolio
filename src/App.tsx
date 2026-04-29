@@ -11,7 +11,6 @@ import Portfolio from './components/sections/Portfolio';
 import CurrentProject from './components/sections/CurrentProject';
 import FeaturedWork from './components/sections/FeaturedWork';
 import Contact from './components/sections/Contact';
-import AIAssistant from './components/AIAssistant';
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -46,11 +45,7 @@ export default function App() {
         <AudioPlayer />
       </div>
 
-      {/* AI Assistant - Bottom Right */}
-      <div className="fixed bottom-6 right-6 z-[100] flex items-end pointer-events-auto">
-        <AIAssistant />
-      </div>
-      
+
       <Footer />
     </div>
   );
