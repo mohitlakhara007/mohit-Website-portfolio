@@ -1,6 +1,6 @@
-import { useState, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion, useScroll, useSpring } from 'motion/react';
-import { PenTool, Star, Instagram, PlaySquare, Package, Printer, Smartphone, Monitor, ArrowRight } from 'lucide-react';
+import { PenTool, Star, Instagram, PlaySquare, Package, Printer, Smartphone, Monitor, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { FaYoutube } from 'react-icons/fa';
 
 const categories = [
@@ -51,6 +51,18 @@ export default function Portfolio() {
     }
   };
 
+  const scrollLeft = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({ left: -window.innerWidth * 0.8, behavior: 'smooth' });
+    }
+  };
+
+  const scrollRight = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({ left: window.innerWidth * 0.8, behavior: 'smooth' });
+    }
+  };
+
   return (
     <section id="work" className="py-[50px] md:py-[100px] relative z-10 overflow-hidden bg-[var(--color-bg-light)]">
       
@@ -67,19 +79,20 @@ export default function Portfolio() {
             }
           }}
         >
-          <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } }} className="inline-block border border-[var(--color-text-main)] px-4 py-1.5 rounded-full mb-8 text-[11px] text-[var(--color-text-main)] font-semibold tracking-[0.2em] uppercase">
+          <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } }} className="inline-block border border-[var(--color-text-main)] px-4 py-1.5 rounded-full mb-6 text-[11px] text-[var(--color-text-main)] font-semibold tracking-[0.2em] uppercase">
              Portfolio
           </motion.div>
 
-          <div className="flex flex-col xl:flex-row xl:items-end justify-between gap-10 mb-16">
+          <div className="flex flex-col xl:flex-row xl:items-end justify-between gap-6 md:gap-10 mb-8 md:mb-16">
             <motion.h2 variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } }} className="text-4xl md:text-5xl lg:text-7xl font-display font-bold text-[var(--color-text-main)] max-w-xl leading-[0.9] tracking-tighter uppercase shrink-0">
               Work That <br />
               <span className="italic font-light">Speaks.</span>
             </motion.h2>
             
+            {/* Desktop Categories */}
             <motion.div 
                variants={{ hidden: { opacity: 0, x: 30 }, visible: { opacity: 1, x: 0, transition: { duration: 0.6 } } }} 
-               className="flex flex-wrap gap-y-3 gap-x-4 lg:gap-x-6 xl:max-w-2xl xl:justify-end mt-4 xl:mt-0"
+               className="hidden xl:flex flex-wrap gap-y-3 gap-x-4 lg:gap-x-6 xl:max-w-2xl xl:justify-end"
             >
                {categories.map((cat, index) => (
                  <span key={index} className="text-[10px] md:text-[11px] font-bold uppercase tracking-[0.2em] text-[var(--color-text-main)] flex items-center gap-4 lg:gap-6 group cursor-crosshair hover:italic transition-all duration-300">
@@ -92,10 +105,10 @@ export default function Portfolio() {
         </motion.div>
 
         {/* Carousel */}
-        <div className="relative group/wrapper mt-12">
+        <div className="relative group/wrapper">
           <div 
             ref={scrollContainerRef}
-            className="flex gap-8 overflow-x-auto hide-scroll snap-x snap-mandatory py-4 px-2"
+            className="flex gap-6 md:gap-8 overflow-x-auto hide-scroll snap-x snap-mandatory py-4"
           >
             {portfolioData.map((item, index) => {
               const content = (
@@ -153,9 +166,35 @@ export default function Portfolio() {
             })}
           </div>
 
+          {/* Mobile Scroll Navigation */}
+          <div className="md:hidden flex items-center justify-between mt-6 px-2">
+            <button 
+              onClick={scrollLeft}
+              className="w-10 h-10 border border-[var(--color-text-main)] flex items-center justify-center text-[var(--color-text-main)] hover:bg-[var(--color-text-main)] hover:text-[var(--color-bg-light)] transition-colors"
+            >
+              <ChevronLeft size={20} />
+            </button>
+            <button 
+              onClick={scrollRight}
+              className="w-10 h-10 border border-[var(--color-text-main)] flex items-center justify-center text-[var(--color-text-main)] hover:bg-[var(--color-text-main)] hover:text-[var(--color-bg-light)] transition-colors"
+            >
+              <ChevronRight size={20} />
+            </button>
+          </div>
+
+          {/* Mobile Categories */}
+          <div className="xl:hidden flex flex-wrap gap-y-3 gap-x-4 mt-8 md:mt-12">
+               {categories.map((cat, index) => (
+                 <span key={index} className="text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--color-text-main)] flex items-center gap-4 group cursor-crosshair transition-all duration-300">
+                    {cat.name}
+                    {index < categories.length - 1 && <span className="opacity-30 not-italic">/</span>}
+                 </span>
+               ))}
+          </div>
+
           {/* Location Line Animation / Custom Scrollbar */}
           <div 
-            className="w-full max-w-2xl mx-auto h-[2px] bg-[var(--color-text-main)] overflow-hidden bg-opacity-20 relative mt-16 cursor-pointer"
+            className="hidden md:block w-full max-w-2xl mx-auto h-[2px] bg-[var(--color-text-main)] overflow-hidden bg-opacity-20 relative mt-16 cursor-pointer"
             onClick={handleLineClick}
           >
              <motion.div 
@@ -165,7 +204,7 @@ export default function Portfolio() {
           </div>
         </div>
 
-        <div className="mt-20 text-center">
+        <div className="mt-12 md:mt-20 text-center">
           <a href="https://www.behance.net/mohitlakharadesigner" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-4 text-[var(--color-text-main)] font-semibold text-sm uppercase tracking-wide hover:opacity-70 transition-opacity group">
             View All Projects
             <ArrowRight className="group-hover:translate-x-2 transition-transform" />

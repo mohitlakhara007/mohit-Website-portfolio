@@ -5,7 +5,7 @@ export default function FeaturedWork() {
   return (
     <section id="featured" className="py-[50px] md:py-[100px] relative bg-[var(--color-bg-light)]">
       
-      <div className="max-w-[1400px] mx-auto px-6 md:px-12 flex flex-col xl:flex-row gap-16 md:gap-24 items-start relative z-10">
+      <div className="max-w-[1400px] mx-auto px-6 md:px-12 flex flex-col xl:flex-row gap-8 md:gap-16 xl:gap-24 items-start relative z-10">
         
         {/* Left text */}
         <motion.div 
@@ -24,11 +24,11 @@ export default function FeaturedWork() {
           <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } }} className="inline-block border border-[var(--color-text-main)] px-4 py-1.5 rounded-full mb-8 text-[11px] text-[var(--color-text-main)] font-semibold tracking-[0.2em] uppercase">
              Featured Work
           </motion.div>
-          <motion.h2 variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } }} className="text-4xl md:text-5xl lg:text-7xl font-display font-bold text-[var(--color-text-main)] leading-[0.9] mb-10 tracking-tighter uppercase">
+          <motion.h2 variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } }} className="text-4xl md:text-5xl lg:text-7xl font-display font-bold text-[var(--color-text-main)] leading-[0.9] xl:mb-10 tracking-tighter uppercase">
             Selected <br className="hidden md:block" />
             <span className="italic font-light">Project.</span>
           </motion.h2>
-          <motion.a variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } }} href="https://www.behance.net/gallery/238787187/Svarah-jewellery-Branding" target="_blank" rel="noopener noreferrer" className="inline-flex py-4 px-8 border border-[var(--color-text-main)] text-[var(--color-text-main)] text-sm font-semibold hover:bg-[var(--color-text-main)] hover:text-[var(--color-bg-light)] transition-colors items-center gap-3 uppercase tracking-wide">
+          <motion.a variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } }} href="https://www.behance.net/gallery/238787187/Svarah-jewellery-Branding" target="_blank" rel="noopener noreferrer" className="hidden xl:inline-flex py-4 px-8 border border-[var(--color-text-main)] text-[var(--color-text-main)] text-sm font-semibold hover:bg-[var(--color-text-main)] hover:text-[var(--color-bg-light)] transition-colors items-center gap-3 uppercase tracking-wide">
              View Case Study
           </motion.a>
         </motion.div>
@@ -66,6 +66,18 @@ export default function FeaturedWork() {
                alt="Svarah Jewellery Branding" 
                className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 ease-in-out"
             />
+          </a>
+        </motion.div>
+
+        {/* Mobile View Case Study Button */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="w-full xl:hidden flex justify-center"
+        >
+          <a href="https://www.behance.net/gallery/238787187/Svarah-jewellery-Branding" target="_blank" rel="noopener noreferrer" className="inline-flex py-4 px-8 border border-[var(--color-text-main)] text-[var(--color-text-main)] text-sm font-semibold hover:bg-[var(--color-text-main)] hover:text-[var(--color-bg-light)] transition-colors items-center justify-center gap-3 uppercase tracking-wide w-full md:w-auto">
+             View Case Study
           </a>
         </motion.div>
 

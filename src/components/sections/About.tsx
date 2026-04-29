@@ -6,11 +6,31 @@ export default function About() {
   return (
     <section id="about" className="relative py-[50px] md:py-[100px] w-full bg-[var(--color-bg-light)]">
       
-      <div className="max-w-[1400px] mx-auto px-6 md:px-12 relative z-10 flex flex-col md:flex-row items-start gap-16 md:gap-24">
+      {/* Mobile Headers */}
+      <div className="max-w-[1400px] mx-auto px-6 md:px-12 relative z-10 md:hidden mb-10">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="inline-block border border-[var(--color-text-main)] px-4 py-1.5 rounded-full mb-6 text-[11px] text-[var(--color-text-main)] font-semibold tracking-[0.2em] uppercase">
+             About Me
+          </div>
+          <h2 className="text-4xl font-display font-bold text-[var(--color-text-main)] leading-[0.9] tracking-tighter uppercase">
+            Turning Ideas <br />
+            <span className="italic font-light text-[var(--color-text-main)]">
+               Into Reality.
+            </span>
+          </h2>
+        </motion.div>
+      </div>
+
+      <div className="max-w-[1400px] mx-auto px-6 md:px-12 relative z-10 flex flex-col md:flex-row items-start gap-10 md:gap-24">
         
         {/* Left Side: Text Reveal */}
         <motion.div 
-          className="w-full md:w-[50%] relative"
+          className="w-full md:w-[50%] relative mt-4 md:mt-0 order-2 md:order-1"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
@@ -22,13 +42,13 @@ export default function About() {
              }
           }}
         >
-          <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } }}>
+          <motion.div className="hidden md:block" variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } }}>
             <div className="inline-block border border-[var(--color-text-main)] px-4 py-1.5 rounded-full mb-8 text-[11px] text-[var(--color-text-main)] font-semibold tracking-[0.2em] uppercase">
                About Me
             </div>
           </motion.div>
 
-          <motion.h2 variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } }} className="text-4xl md:text-5xl lg:text-7xl font-display font-bold text-[var(--color-text-main)] mb-10 leading-[0.9] tracking-tighter uppercase">
+          <motion.h2 variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } }} className="hidden md:block text-5xl lg:text-7xl font-display font-bold text-[var(--color-text-main)] mb-10 leading-[0.9] tracking-tighter uppercase">
             Turning Ideas <br />
             <span className="italic font-light text-[var(--color-text-main)]">
                Into Reality.
@@ -76,7 +96,7 @@ export default function About() {
         </motion.div>
 
         {/* Right Side: Profile Image area */}
-        <div className="w-full md:w-[50%] relative flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-700">
+        <div className="w-full md:w-[50%] relative flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-700 order-1 md:order-2">
           <motion.div 
             initial={{ scale: 0.95, opacity: 0 }}
             whileInView={{ scale: 1, opacity: 1 }}

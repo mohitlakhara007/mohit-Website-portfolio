@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 import { AnimatePresence } from 'motion/react';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
-import SiteControls from './components/layout/SiteControls';
+import ThemeToggle from './components/layout/ThemeToggle';
+import AudioPlayer from './components/layout/AudioPlayer';
 import Preloader from './components/layout/Preloader';
 import Hero from './components/sections/Hero';
 import About from './components/sections/About';
@@ -10,6 +11,7 @@ import Portfolio from './components/sections/Portfolio';
 import CurrentProject from './components/sections/CurrentProject';
 import FeaturedWork from './components/sections/FeaturedWork';
 import Contact from './components/sections/Contact';
+import AIAssistant from './components/AIAssistant';
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -28,7 +30,6 @@ export default function App() {
       <AnimatePresence mode="wait">
         {isLoading && <Preloader key="preloader" onComplete={() => setIsLoading(false)} />}
       </AnimatePresence>
-      <SiteControls />
       <Navbar />
       <main>
         <Hero />
@@ -38,6 +39,18 @@ export default function App() {
         <FeaturedWork />
         <Contact />
       </main>
+      
+      {/* Controls Container - Bottom Left on Mobile, Bottom Right on Desktop */}
+      <div className="fixed bottom-6 left-6 md:left-auto md:right-[calc(1.5rem+4rem+12px)] xl:right-[5.5rem] z-[100] flex items-center gap-3 pointer-events-auto">
+        <ThemeToggle />
+        <AudioPlayer />
+      </div>
+
+      {/* AI Assistant - Bottom Right */}
+      <div className="fixed bottom-6 right-6 z-[100] flex items-end pointer-events-auto">
+        <AIAssistant />
+      </div>
+      
       <Footer />
     </div>
   );
