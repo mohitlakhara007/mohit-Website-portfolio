@@ -3,7 +3,15 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Mic, MicOff, X, Sparkles, Loader2, Volume2, Headset } from 'lucide-react';
 import { GoogleGenAI, LiveServerMessage, Modality } from '@google/genai';
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+let ai: GoogleGenAI | null = null;
+try {
+  // Try to initialize, but don't crash the whole app if API key is missing during build/runtime
+  if (process.env.GEMINI_API_KEY) {
+    ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+  }
+} catch (e) {
+  console.error("Gemini API key is missing or invalid. Set GEMINI_API_KEY environment variable.", e);
+}
 
 const SYSTEM_INSTRUCTION = `You are Mohit — a confident, creative, and sharp AI persona representing Mohit Lakhara, a UI/UX & Graphic Designer.
 Identity:
@@ -100,6 +108,10 @@ export default function AIAssistant() {
       playbackTimeRef.current = playbackContextRef.current.currentTime;
 
       // 3. Connect to API
+      if (!ai) {
+        throw new Error("Gemini API key is not configured. Please add GEMINI_API_KEY to your environment variables in Vercel.");
+      }
+      
       let sessionPromise = ai.live.connect({
         model: "gemini-3.1-flash-live-preview",
         config: {
