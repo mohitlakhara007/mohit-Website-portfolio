@@ -63,10 +63,10 @@ export default function Contact() {
           </motion.h2>
 
           <div className="flex flex-col gap-8">
-            <a href="mailto:mohitlakhara007061@gmail.com" className="group flex items-center justify-between border-b border-[var(--color-text-main)] pb-6 hover:opacity-70 transition-opacity">
+            <a href="mailto:mohitdznr@gmail.com" className="group flex items-center justify-between border-b border-[var(--color-text-main)] pb-6 hover:opacity-70 transition-opacity">
               <div>
                 <p className="text-[10px] text-[var(--color-text-main)] font-bold tracking-[0.2em] uppercase mb-2">Email</p>
-                <p className="text-lg md:text-2xl text-[var(--color-text-main)] font-medium tracking-tight">mohitlakhara007061@gmail.com</p>
+                <p className="text-lg md:text-2xl text-[var(--color-text-main)] font-medium tracking-tight">mohitdznr@gmail.com</p>
               </div>
               <ArrowRight className="text-[var(--color-text-main)] transform group-hover:translate-x-2 transition-transform" />
             </a>
