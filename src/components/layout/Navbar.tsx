@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Menu, X, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -81,15 +82,15 @@ export default function Navbar() {
           {/* Desktop Nav - Split into columns */}
           <div className="hidden lg:flex items-start gap-16 xl:gap-24 text-[13px] font-medium tracking-tight uppercase border-l pl-16 border-[var(--color-text-main)]">
              <div className="flex flex-col gap-1.5">
-                <a href="#home" className="hover:opacity-50 transition-opacity">Home</a>
-                <a href="#about" className="hover:opacity-50 transition-opacity">About</a>
+                <Link to="/" className="hover:opacity-50 transition-opacity">Home</Link>
+                <Link to="/about" className="hover:opacity-50 transition-opacity">About</Link>
              </div>
              <div className="flex flex-col gap-1.5">
-                <a href="#work" className="hover:opacity-50 transition-opacity">Portfolio</a>
-                <a href="#featured" className="hover:opacity-50 transition-opacity">Featured</a>
+                <Link to="/portfolio" className="hover:opacity-50 transition-opacity">Portfolio</Link>
+                <Link to="/#featured" className="hover:opacity-50 transition-opacity">Featured</Link>
              </div>
              <div className="flex flex-col gap-1.5">
-                <a href="#contact" className="hover:opacity-50 transition-opacity">Contact</a>
+                <Link to="/#contact" className="hover:opacity-50 transition-opacity">Contact</Link>
                 <a href="https://www.instagram.com/mohitdznr?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" className="hover:opacity-50 transition-opacity">Instagram</a>
              </div>
              <div className="flex flex-col gap-1.5">
@@ -148,29 +149,46 @@ export default function Navbar() {
             >
               <div className="flex flex-col gap-4 overflow-hidden">
                 {[
-                  { name: 'Home', href: '#home', isExternal: false },
-                  { name: 'About', href: '#about', isExternal: false },
-                  { name: 'Portfolio', href: '#work', isExternal: false },
-                  { name: 'Featured', href: '#featured', isExternal: false },
-                  { name: 'Contact', href: '#contact', isExternal: false },
+                  { name: 'Home', href: '/', isExternal: false },
+                  { name: 'About', href: '/about', isExternal: false },
+                  { name: 'Portfolio', href: '/portfolio', isExternal: false },
+                  { name: 'Featured', href: '/#featured', isExternal: false },
+                  { name: 'Contact', href: '/#contact', isExternal: false },
                   { name: 'Instagram', href: 'https://www.instagram.com/mohitdznr?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==', isExternal: true },
                   { name: 'Linkedin', href: 'https://www.linkedin.com/in/lakhara-mohit-45260a336', isExternal: true },
                   { name: 'Behance', href: 'https://www.behance.net/mohitlakharadesigner', isExternal: true }
                 ].map((item, index) => (
                   <div key={index} className="overflow-hidden">
-                    <motion.a 
-                      variants={{
-                        open: { y: 0, opacity: 1, transition: { duration: 0.5, ease: [0.33, 1, 0.68, 1] } },
-                        closed: { y: "100%", opacity: 0, transition: { duration: 0.4, ease: "easeInOut" } }
-                      }}
-                      href={item.href} 
-                      onClick={() => setIsOpen(false)}
-                      target={item.isExternal ? "_blank" : undefined}
-                      rel={item.isExternal ? "noopener noreferrer" : undefined}
-                      className="block hover:opacity-50 transition-opacity"
-                    >
-                      {item.name}
-                    </motion.a>
+                    {item.isExternal ? (
+                      <motion.a 
+                        variants={{
+                          open: { y: 0, opacity: 1, transition: { duration: 0.5, ease: [0.33, 1, 0.68, 1] } },
+                          closed: { y: "100%", opacity: 0, transition: { duration: 0.4, ease: "easeInOut" } }
+                        }}
+                        href={item.href} 
+                        onClick={() => setIsOpen(false)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block hover:opacity-50 transition-opacity"
+                      >
+                        {item.name}
+                      </motion.a>
+                    ) : (
+                      <motion.div
+                        variants={{
+                          open: { y: 0, opacity: 1, transition: { duration: 0.5, ease: [0.33, 1, 0.68, 1] } },
+                          closed: { y: "100%", opacity: 0, transition: { duration: 0.4, ease: "easeInOut" } }
+                        }}
+                      >
+                        <Link 
+                          to={item.href} 
+                          onClick={() => setIsOpen(false)}
+                          className="block hover:opacity-50 transition-opacity"
+                        >
+                          {item.name}
+                        </Link>
+                      </motion.div>
+                    )}
                   </div>
                 ))}
               </div>

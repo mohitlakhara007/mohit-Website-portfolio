@@ -31,7 +31,7 @@ const portfolioData: PortfolioItem[] = [
   { id: 5, title: 'Event Application design', category: 'Application design', img: 'https://mir-s3-cdn-cf.behance.net/projects/max_808/b45b12232041019.Y3JvcCw5ODEsNzY4LDIxLDA.jpg', link: 'https://www.behance.net/gallery/232041019/Event-Managment-Case-Study', isDark: true },
 ];
 
-export default function Portfolio() {
+export default function Portfolio({ isFullPage = false }: { isFullPage?: boolean }) {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const { scrollXProgress } = useScroll({ container: scrollContainerRef });
   const scaleX = useSpring(scrollXProgress, {
@@ -108,7 +108,11 @@ export default function Portfolio() {
         <div className="relative group/wrapper">
           <div 
             ref={scrollContainerRef}
-            className="flex gap-6 md:gap-8 overflow-x-auto hide-scroll snap-x snap-mandatory py-4"
+            className={
+              isFullPage 
+                ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 py-4"
+                : "flex gap-6 md:gap-8 overflow-x-auto hide-scroll snap-x snap-mandatory py-4"
+            }
           >
             {portfolioData.map((item, index) => {
               const content = (
@@ -139,6 +143,10 @@ export default function Portfolio() {
                 </>
               );
 
+              const cardClasses = isFullPage
+                ? "block relative w-full aspect-[4/5] overflow-hidden group/card bg-[var(--color-text-muted)] border border-[var(--color-text-main)] transition-all duration-700"
+                : "block relative w-[80vw] md:w-[400px] lg:w-[450px] aspect-[4/5] overflow-hidden group/card bg-[var(--color-text-muted)] snap-center shrink-0 border border-[var(--color-text-main)] transition-all duration-700";
+
               return (
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -152,12 +160,12 @@ export default function Portfolio() {
                       href={item.link} 
                       target="_blank" 
                       rel="noopener noreferrer" 
-                      className="block relative w-[80vw] md:w-[400px] lg:w-[450px] aspect-[4/5] overflow-hidden group/card bg-[var(--color-text-muted)] snap-center shrink-0 border border-[var(--color-text-main)] transition-all duration-700"
+                      className={cardClasses}
                     >
                       {content}
                     </a>
                   ) : (
-                    <div className="relative w-[80vw] md:w-[400px] lg:w-[450px] aspect-[4/5] overflow-hidden group/card bg-[var(--color-text-muted)] snap-center shrink-0 border border-[var(--color-text-main)] transition-all duration-700">
+                    <div className={cardClasses}>
                       {content}
                     </div>
                   )}
@@ -166,50 +174,56 @@ export default function Portfolio() {
             })}
           </div>
 
-          {/* Mobile Scroll Navigation */}
-          <div className="md:hidden flex items-center justify-between mt-6 px-2">
-            <button 
-              onClick={scrollLeft}
-              className="w-10 h-10 border border-[var(--color-text-main)] flex items-center justify-center text-[var(--color-text-main)] hover:bg-[var(--color-text-main)] hover:text-[var(--color-bg-light)] transition-colors"
-            >
-              <ChevronLeft size={20} />
-            </button>
-            <button 
-              onClick={scrollRight}
-              className="w-10 h-10 border border-[var(--color-text-main)] flex items-center justify-center text-[var(--color-text-main)] hover:bg-[var(--color-text-main)] hover:text-[var(--color-bg-light)] transition-colors"
-            >
-              <ChevronRight size={20} />
-            </button>
-          </div>
+          {!isFullPage && (
+            <>
+              {/* Mobile Scroll Navigation */}
+              <div className="md:hidden flex items-center justify-between mt-6 px-2">
+                <button 
+                  onClick={scrollLeft}
+                  className="w-10 h-10 border border-[var(--color-text-main)] flex items-center justify-center text-[var(--color-text-main)] hover:bg-[var(--color-text-main)] hover:text-[var(--color-bg-light)] transition-colors"
+                >
+                  <ChevronLeft size={20} />
+                </button>
+                <button 
+                  onClick={scrollRight}
+                  className="w-10 h-10 border border-[var(--color-text-main)] flex items-center justify-center text-[var(--color-text-main)] hover:bg-[var(--color-text-main)] hover:text-[var(--color-bg-light)] transition-colors"
+                >
+                  <ChevronRight size={20} />
+                </button>
+              </div>
 
-          {/* Mobile Categories */}
-          <div className="xl:hidden flex flex-wrap gap-y-3 gap-x-4 mt-8 md:mt-12">
-               {categories.map((cat, index) => (
-                 <span key={index} className="text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--color-text-main)] flex items-center gap-4 group cursor-crosshair transition-all duration-300">
-                    {cat.name}
-                    {index < categories.length - 1 && <span className="opacity-30 not-italic">/</span>}
-                 </span>
-               ))}
-          </div>
+              {/* Mobile Categories */}
+              <div className="xl:hidden flex flex-wrap gap-y-3 gap-x-4 mt-8 md:mt-12">
+                   {categories.map((cat, index) => (
+                     <span key={index} className="text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--color-text-main)] flex items-center gap-4 group cursor-crosshair transition-all duration-300">
+                        {cat.name}
+                        {index < categories.length - 1 && <span className="opacity-30 not-italic">/</span>}
+                     </span>
+                   ))}
+              </div>
 
-          {/* Location Line Animation / Custom Scrollbar */}
-          <div 
-            className="hidden md:block w-full max-w-2xl mx-auto h-[2px] bg-[var(--color-text-main)] overflow-hidden bg-opacity-20 relative mt-16 cursor-pointer"
-            onClick={handleLineClick}
-          >
-             <motion.div 
-               style={{ scaleX }} 
-               className="absolute top-0 left-0 bottom-0 w-full bg-[var(--color-text-main)] origin-left pointer-events-none" 
-             />
-          </div>
+              {/* Location Line Animation / Custom Scrollbar */}
+              <div 
+                className="hidden md:block w-full max-w-2xl mx-auto h-[2px] bg-[var(--color-text-main)] overflow-hidden bg-opacity-20 relative mt-16 cursor-pointer"
+                onClick={handleLineClick}
+              >
+                 <motion.div 
+                   style={{ scaleX }} 
+                   className="absolute top-0 left-0 bottom-0 w-full bg-[var(--color-text-main)] origin-left pointer-events-none" 
+                 />
+              </div>
+            </>
+          )}
         </div>
 
-        <div className="mt-12 md:mt-20 text-center">
-          <a href="https://www.behance.net/mohitlakharadesigner" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-4 text-[var(--color-text-main)] font-semibold text-sm uppercase tracking-wide hover:opacity-70 transition-opacity group">
-            View All Projects
-            <ArrowRight className="group-hover:translate-x-2 transition-transform" />
-          </a>
-        </div>
+        {!isFullPage && (
+          <div className="mt-12 md:mt-20 text-center">
+            <a href="https://www.behance.net/mohitlakharadesigner" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-4 text-[var(--color-text-main)] font-semibold text-sm uppercase tracking-wide hover:opacity-70 transition-opacity group">
+              View All Projects
+              <ArrowRight className="group-hover:translate-x-2 transition-transform" />
+            </a>
+          </div>
+        )}
 
       </div>
     </section>

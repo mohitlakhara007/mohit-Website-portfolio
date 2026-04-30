@@ -81,6 +81,7 @@ export default function AIAssistant() {
   const [isConnected, setIsConnected] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
+  const [waitingForFirstReply, setWaitingForFirstReply] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [needsPermission, setNeedsPermission] = useState(false);
 
@@ -97,16 +98,16 @@ export default function AIAssistant() {
     setErrorMsg(null);
     
     try {
-      // 1. Microphone setup
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      // Create AudioContexts synchronously immediately on user click to prevent them from starting in a suspended state
       audioContextRef.current = new AudioContext({ sampleRate: 16000 });
-      sourceRef.current = audioContextRef.current.createMediaStreamSource(stream);
-      processorRef.current = audioContextRef.current.createScriptProcessor(4096, 1, 1);
-      
-      // 2. Playback setup (24000 PCM from Live API)
       playbackContextRef.current = new AudioContext({ sampleRate: 24000 });
       playbackTimeRef.current = playbackContextRef.current.currentTime;
 
+      // 1. Microphone setup
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      sourceRef.current = audioContextRef.current.createMediaStreamSource(stream);
+      processorRef.current = audioContextRef.current.createScriptProcessor(4096, 1, 1);
+      
       // 3. Connect to API
       if (!ai) {
         throw new Error("Gemini API key is not configured. Please add GEMINI_API_KEY to your environment variables in Vercel.");
@@ -125,6 +126,24 @@ export default function AIAssistant() {
           onopen: () => {
              setIsConnected(true);
              setIsConnecting(false);
+             setWaitingForFirstReply(true);
+
+             // Trigger the AI to speak first so the user doesn't have to wait in silence
+             sessionPromise.then((session: any) => {
+               if (session.send) {
+                 session.send({
+                   clientContent: {
+                     turns: [
+                       {
+                         role: "user",
+                         parts: [{ text: "I have just joined the call. Give a very quick, energetic, and short Hindi/English welcome to me as Mohit. Ask what design help I need today. Keep it under 2 sentences." }]
+                       }
+                     ],
+                     turnComplete: true
+                   }
+                 });
+               }
+             }).catch(() => {});
              
              if (processorRef.current && sourceRef.current && audioContextRef.current) {
                 processorRef.current.onaudioprocess = (e) => {
@@ -138,11 +157,10 @@ export default function AIAssistant() {
                   }
                   
                   const uint8Data = new Uint8Array(int16Data.buffer);
-                  // Faster base64 encoding
+                  // Faster base64 encoding without Array.from which causes latency
                   let binaryString = '';
-                  const chunkSize = 8192;
-                  for (let i = 0; i < uint8Data.length; i += chunkSize) {
-                    binaryString += String.fromCharCode.apply(null, Array.from(uint8Data.slice(i, i + chunkSize)));
+                  for (let i = 0; i < uint8Data.length; i++) {
+                    binaryString += String.fromCharCode(uint8Data[i]);
                   }
                   const base64Data = btoa(binaryString);
 
@@ -214,6 +232,11 @@ export default function AIAssistant() {
   const playBase64Pcm = (base64: string) => {
     if (!playbackContextRef.current) return;
     
+    // Ensure context is not suspended
+    if (playbackContextRef.current.state === 'suspended') {
+      playbackContextRef.current.resume();
+    }
+    
     // Decode base64 16-bit PCM to Float32
     const binaryString = atob(base64);
     const len = binaryString.length;
@@ -243,6 +266,7 @@ export default function AIAssistant() {
     playbackTimeRef.current += audioBuffer.duration;
     
     setIsSpeaking(true);
+    setWaitingForFirstReply(false);
     source.onended = () => {
        // if this was the last chunk
        if (playbackContextRef.current && playbackContextRef.current.currentTime >= playbackTimeRef.current - 0.1) {
@@ -420,8 +444,13 @@ export default function AIAssistant() {
                    </div>
                    
                    <p className="text-xs uppercase tracking-[0.2em] font-semibold text-center mt-2">
-                     {isSpeaking ? "Mohit is speaking" : "Listening..."}
+                     {waitingForFirstReply ? "Warming up context..." : (isSpeaking ? "Mohit is speaking" : "Listening...")}
                    </p>
+                   {waitingForFirstReply && (
+                     <p className="text-[9px] uppercase tracking-wider text-center opacity-50 mt-2 max-w-[200px]">
+                       Takes roughly 10-15s for the first interaction to load.
+                     </p>
+                   )}
                 </div>
               )}
             </div>
