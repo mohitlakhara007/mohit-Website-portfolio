@@ -6,6 +6,7 @@ import ThemeToggle from '../components/layout/ThemeToggle';
 import AudioPlayer from '../components/layout/AudioPlayer';
 import Preloader from '../components/layout/Preloader';
 import Hero from '../components/sections/Hero';
+import About from '../components/sections/About';
 import Portfolio from '../components/sections/Portfolio';
 import CurrentProject from '../components/sections/CurrentProject';
 import FeaturedWork from '../components/sections/FeaturedWork';
@@ -34,6 +35,7 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
+        <About />
         <Portfolio />
         <CurrentProject />
         <FeaturedWork />

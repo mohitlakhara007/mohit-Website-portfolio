@@ -5,6 +5,9 @@ import ThemeToggle from '../components/layout/ThemeToggle';
 import AudioPlayer from '../components/layout/AudioPlayer';
 import SocialMediaCarousel from '../components/sections/SocialMediaCarousel';
 import CarouselPostSection from '../components/sections/CarouselPostSection';
+import ThumbnailCarouselSection from '../components/sections/ThumbnailCarouselSection';
+import MotionGraphicsSection from '../components/sections/MotionGraphicsSection';
+import LogofolioSection from '../components/sections/LogofolioSection';
 import AIAssistant from '../components/AIAssistant';
 import BackgroundWaves from '../components/layout/BackgroundWaves';
 import { motion } from 'motion/react';
@@ -27,6 +30,9 @@ export default function PortfolioPage() {
         >
           <SocialMediaCarousel />
           <CarouselPostSection />
+          <ThumbnailCarouselSection />
+          <MotionGraphicsSection />
+          <LogofolioSection />
         </motion.div>
       </main>
 

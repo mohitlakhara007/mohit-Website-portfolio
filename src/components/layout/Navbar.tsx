@@ -75,9 +75,9 @@ export default function Navbar() {
       <div className="max-w-[1400px] mx-auto px-6 md:px-12">
         <div className="flex flex-row items-center justify-between">
           
-          <a href="#home" className="text-xl md:text-2xl font-display font-bold text-[var(--color-text-main)] leading-tight tracking-tighter">
+          <Link to="/" className="text-xl md:text-2xl font-display font-bold text-[var(--color-text-main)] leading-tight tracking-tighter">
             MOHITDZNR
-          </a>
+          </Link>
 
           {/* Desktop Nav - Split into columns */}
           <div className="hidden lg:flex items-start gap-16 xl:gap-24 text-[13px] font-medium tracking-tight uppercase border-l pl-16 border-[var(--color-text-main)]">

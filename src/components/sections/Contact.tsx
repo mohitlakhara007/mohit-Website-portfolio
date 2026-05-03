@@ -62,27 +62,33 @@ export default function Contact() {
             <span className="italic font-light">Together.</span>
           </motion.h2>
 
-          <div className="flex flex-col gap-8">
-            <a href="mailto:mohitdznr@gmail.com" className="group flex items-center justify-between border-b border-[var(--color-text-main)] pb-6 hover:opacity-70 transition-opacity">
-              <div>
-                <p className="text-[10px] text-[var(--color-text-main)] font-bold tracking-[0.2em] uppercase mb-2">Email</p>
-                <p className="text-lg md:text-2xl text-[var(--color-text-main)] font-medium tracking-tight">mohitdznr@gmail.com</p>
+          <div className="flex flex-col gap-8 w-full">
+            <a href="mailto:mohitdznr@gmail.com" className="group block w-full border-b border-[var(--color-text-main)] pb-6 hover:opacity-70 transition-opacity">
+              <div className="flex items-start justify-between">
+                <div className="pr-4">
+                  <p className="text-[10px] text-[var(--color-text-main)] font-bold tracking-[0.2em] uppercase mb-2">Email</p>
+                  <p className="text-lg md:text-2xl text-[var(--color-text-main)] font-medium tracking-tight break-all">mohitdznr@gmail.com</p>
+                </div>
+                <ArrowRight className="text-[var(--color-text-main)] transform group-hover:translate-x-2 transition-transform mt-1 flex-shrink-0" />
               </div>
-              <ArrowRight className="text-[var(--color-text-main)] transform group-hover:translate-x-2 transition-transform" />
             </a>
-            <a href="tel:+918799179784" className="group flex items-center justify-between border-b border-[var(--color-text-main)] pb-6 hover:opacity-70 transition-opacity">
-              <div>
-                <p className="text-[10px] text-[var(--color-text-main)] font-bold tracking-[0.2em] uppercase mb-2">Phone</p>
-                <p className="text-lg md:text-2xl text-[var(--color-text-main)] font-medium tracking-tight">+91 8799179784</p>
+            <a href="tel:+918799179784" className="group block w-full border-b border-[var(--color-text-main)] pb-6 hover:opacity-70 transition-opacity">
+              <div className="flex items-start justify-between">
+                <div className="pr-4">
+                  <p className="text-[10px] text-[var(--color-text-main)] font-bold tracking-[0.2em] uppercase mb-2">Phone</p>
+                  <p className="text-lg md:text-2xl text-[var(--color-text-main)] font-medium tracking-tight break-all">+91 8799179784</p>
+                </div>
+                <ArrowRight className="text-[var(--color-text-main)] transform group-hover:translate-x-2 transition-transform mt-1 flex-shrink-0" />
               </div>
-              <ArrowRight className="text-[var(--color-text-main)] transform group-hover:translate-x-2 transition-transform" />
             </a>
-            <a href="https://www.instagram.com/mohitdznr?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" className="group flex items-center justify-between border-b border-[var(--color-text-main)] pb-6 hover:opacity-70 transition-opacity">
-              <div>
-                <p className="text-[10px] text-[var(--color-text-main)] font-bold tracking-[0.2em] uppercase mb-2">Instagram</p>
-                <p className="text-lg md:text-2xl text-[var(--color-text-main)] font-medium tracking-tight">@mohitdznr</p>
+            <a href="https://www.instagram.com/mohitdznr?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" className="group block w-full border-b border-[var(--color-text-main)] pb-6 hover:opacity-70 transition-opacity">
+              <div className="flex items-start justify-between">
+                <div className="pr-4">
+                  <p className="text-[10px] text-[var(--color-text-main)] font-bold tracking-[0.2em] uppercase mb-2">Instagram</p>
+                  <p className="text-lg md:text-2xl text-[var(--color-text-main)] font-medium tracking-tight break-all">@mohitdznr</p>
+                </div>
+                <ArrowRight className="text-[var(--color-text-main)] transform group-hover:translate-x-2 transition-transform mt-1 flex-shrink-0" />
               </div>
-              <ArrowRight className="text-[var(--color-text-main)] transform group-hover:translate-x-2 transition-transform" />
             </a>
           </div>
         </motion.div>
