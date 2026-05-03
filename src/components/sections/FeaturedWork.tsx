@@ -35,11 +35,11 @@ export default function FeaturedWork() {
 
         {/* Right Card */}
         <motion.div 
-          initial={{ opacity: 0, scale: 0.98 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="xl:w-2/3 w-full border border-[var(--color-text-main)] bg-[var(--color-bg-light)] flex flex-col md:flex-row group"
+          initial={{ opacity: 0, scale: 0.95, y: 30, rotate: 1 }}
+          whileInView={{ opacity: 1, scale: 1, y: 0, rotate: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
+          className="xl:w-2/3 w-full border border-[var(--color-text-main)] bg-[var(--color-bg-light)] flex flex-col md:flex-row group shadow-xl shadow-[var(--color-text-main)]/5"
         >
           {/* Left info box inside card */}
           <div className="w-full md:w-[40%] p-8 md:p-12 flex flex-col justify-between border-b md:border-b-0 md:border-r border-[var(--color-text-main)]">

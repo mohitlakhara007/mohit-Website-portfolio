@@ -89,10 +89,10 @@ export default function ThumbnailCarouselSection() {
       
       <div className="flex flex-col gap-4 md:gap-8 mt-8">
         <motion.div
-           initial={{ opacity: 0 }}
-           whileInView={{ opacity: 1 }}
-           viewport={{ once: true }}
-           transition={{ duration: 1, delay: 0.2 }}
+           initial={{ opacity: 0, scale: 0.95 }}
+           whileInView={{ opacity: 1, scale: 1 }}
+           viewport={{ once: true, margin: "-100px" }}
+           transition={{ duration: 1, delay: 0.2, ease: [0.33, 1, 0.68, 1] }}
         >
           <CarouselRow items={thumbnailImages} reverse={true} />
           <CarouselRow items={thumbnailImages.slice().reverse()} />

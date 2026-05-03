@@ -71,7 +71,7 @@ const InstagramCard = ({ images, likes, timeAgo, username = "houseofekta_pr_digi
         >
           {images.map((item) => (
              <div key={item.id} className="w-full h-full shrink-0 snap-center relative">
-               <img src={item.src} loading="lazy" className="w-full h-full object-cover" />
+               <img src={item.src} alt={`Graphic Design Carousel Slide ${item.id}`} loading="lazy" className="w-full h-full object-cover" />
              </div>
           ))}
         </div>
@@ -155,10 +155,10 @@ export default function CarouselPostSection() {
       </div>
 
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8, delay: 0.3 }}
+        initial={{ opacity: 0, y: 50, scale: 0.95 }}
+        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8, delay: 0.1, ease: [0.33, 1, 0.68, 1] }}
         className="container mx-auto px-4"
       >
         <div className="flex flex-col md:flex-row justify-center gap-8 md:gap-12 lg:gap-16 items-center md:items-start max-w-6xl mx-auto">

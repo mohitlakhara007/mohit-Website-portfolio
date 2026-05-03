@@ -100,13 +100,13 @@ export default function Contact() {
           viewport={{ once: true, margin: "-100px" }}
           variants={{
              hidden: { opacity: 0 },
-             visible: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.2 } }
+             visible: { opacity: 1, transition: { staggerChildren: 0.15, delayChildren: 0.2 } }
           }}
           className="xl:w-[60%] w-full"
         >
           <motion.div 
-            variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } }}
-            className="border border-[var(--color-text-main)] bg-[var(--color-bg-light)] p-8 md:p-16 w-full"
+            variants={{ hidden: { opacity: 0, scale: 0.95, y: 30 }, visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.7, ease: [0.33, 1, 0.68, 1] } } }}
+            className="border border-[var(--color-text-main)] bg-[var(--color-bg-light)] p-8 md:p-16 w-full shadow-2xl shadow-[var(--color-text-main)]/5"
           >
             {isSuccess ? (
               <motion.div 

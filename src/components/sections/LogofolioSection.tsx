@@ -32,10 +32,10 @@ export default function LogofolioSection() {
           {logos.map((logo, index) => (
             <motion.div
               key={logo.id}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              initial={{ opacity: 0, scale: 0.9, y: 30 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.7, delay: index * 0.15, ease: [0.33, 1, 0.68, 1] }}
               className={`group relative bg-[var(--color-text-muted)]/5 rounded-3xl overflow-hidden shadow-xl border border-[var(--color-text-main)]/10 cursor-pointer ${logo.span}`}
             >
               <img 

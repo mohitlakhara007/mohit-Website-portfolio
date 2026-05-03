@@ -1,7 +1,14 @@
-import { motion } from 'motion/react';
+import { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'motion/react';
 
 export default function About() {
   const skills = ["Graphic Design", "UI/UX Design", "Branding", "Social Media", "Typography"];
+  const imageRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: imageRef,
+    offset: ["start end", "end start"]
+  });
+  const y = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
 
   return (
     <section id="about" className="relative py-[50px] md:py-[100px] w-full bg-[var(--color-bg-light)]">
@@ -57,7 +64,7 @@ export default function About() {
 
           <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } }} className="space-y-8 text-base md:text-lg text-[var(--color-text-main)] font-medium leading-relaxed max-w-xl">
             <p>
-              Hey! I'm a graphic and UI/UX designer from Surat — currently doing my BCA and spending most of my free time designing things I actually care about.
+              Hey! I'm Mohit Lakhara, a freelance graphic and UI/UX designer based in India, collaborating with clients locally and in the USA. Currently pursuing my BCA, I spend my time crafting user-centered digital products and minimalist brand identities.
             </p>
             <p>
               I like making things that look good and actually work well. Whether it's a logo, a mobile screen, or a social media post — I try to keep it clean, intentional, and real.
@@ -98,20 +105,22 @@ export default function About() {
         {/* Right Side: Profile Image area */}
         <div className="w-full md:w-[50%] relative flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-700 order-1 md:order-2">
           <motion.div 
-            initial={{ scale: 0.95, opacity: 0 }}
-            whileInView={{ scale: 1, opacity: 1 }}
+            ref={imageRef}
+            initial={{ scale: 0.9, opacity: 0, rotate: -2 }}
+            whileInView={{ scale: 1, opacity: 1, rotate: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8 }}
-            className="relative w-full aspect-[4/5] overflow-hidden group"
+            transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
+            className="relative w-full aspect-[4/5] overflow-hidden group shadow-2xl shadow-[var(--color-text-main)]/10"
           >
-             <img 
+             <motion.img 
+               style={{ y, scale: 1.15 }}
                src="https://plain-apac-prod-public.komododecks.com/202604/27/sUr4GJHq2qOap0mzoUAJ/image.jpg" 
                alt="Mohit Lakhara" 
                loading="lazy"
-               className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+               className="absolute inset-0 w-full h-full object-cover transition-all duration-1000 group-hover:scale-[1.2] group-hover:rotate-1 origin-center"
              />
              {/* minimalist corner accent */}
-             <div className="absolute top-0 right-0 w-16 h-16 border-t-4 border-r-4 border-[var(--color-text-main)] m-6" />
+             <div className="absolute top-0 right-0 w-16 h-16 border-t-4 border-r-4 border-[var(--color-text-main)] m-6 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
           </motion.div>
         </div>
 

@@ -117,10 +117,10 @@ export default function MotionGraphicsSection() {
       </div>
 
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8, delay: 0.2 }}
+        initial={{ opacity: 0, y: 50, scale: 0.95 }}
+        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8, delay: 0.2, ease: [0.33, 1, 0.68, 1] }}
         className="container mx-auto px-4"
       >
         <div className="flex flex-col md:flex-row flex-wrap justify-center gap-8 md:gap-12 lg:gap-16 items-center max-w-7xl mx-auto">

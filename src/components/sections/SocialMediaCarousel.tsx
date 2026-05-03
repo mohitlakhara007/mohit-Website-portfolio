@@ -81,9 +81,10 @@ export default function SocialMediaCarousel() {
     <section className="w-full py-12 md:py-24 flex flex-col overflow-hidden min-h-[80vh] justify-center">
       <div className="container mx-auto px-6 mb-12">
         <motion.div
-           initial={{ opacity: 0, y: 20 }}
-           animate={{ opacity: 1, y: 0 }}
-           transition={{ duration: 0.8 }}
+           initial={{ opacity: 0, y: 30 }}
+           whileInView={{ opacity: 1, y: 0 }}
+           viewport={{ once: true, margin: "-100px" }}
+           transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
            className="text-center"
         >
           <h2 className="text-3xl md:text-5xl lg:text-7xl font-light uppercase tracking-tighter w-full text-center">
@@ -97,9 +98,10 @@ export default function SocialMediaCarousel() {
       
       <div className="flex flex-col gap-4 md:gap-8 mt-8">
         <motion.div
-           initial={{ opacity: 0 }}
-           animate={{ opacity: 1 }}
-           transition={{ duration: 1, delay: 0.2 }}
+           initial={{ opacity: 0, scale: 0.95 }}
+           whileInView={{ opacity: 1, scale: 1 }}
+           viewport={{ once: true, margin: "-100px" }}
+           transition={{ duration: 1, delay: 0.2, ease: [0.33, 1, 0.68, 1] }}
         >
           <CarouselRow items={row1Images} />
           {/* Reverse scrolling direction for bottom row */}

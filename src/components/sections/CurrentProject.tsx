@@ -23,9 +23,9 @@ export default function CurrentProject() {
                  <span className="text-[10px] md:text-xs font-bold text-[var(--color-text-main)] group-hover:text-[var(--color-bg-light)] tracking-[0.2em] uppercase transition-colors duration-500">Currently Working On</span>
               </div>
               
-              <h3 className="font-display text-4xl md:text-6xl font-bold text-[var(--color-text-main)] group-hover:text-[var(--color-bg-light)] tracking-tight leading-[1.1] uppercase max-w-4xl transition-colors duration-500">
+              <h2 className="font-display text-4xl md:text-6xl font-bold text-[var(--color-text-main)] group-hover:text-[var(--color-bg-light)] tracking-tight leading-[1.1] uppercase max-w-4xl transition-colors duration-500">
                 Vrajras Production
-              </h3>
+              </h2>
               
               <p className="text-[var(--color-text-muted)] group-hover:text-[var(--color-bg-light)] group-hover:opacity-90 text-sm md:text-lg font-medium max-w-3xl transition-colors duration-500 leading-relaxed tracking-wide">
                  Leading end-to-end creative strategy, branding, and digital experiences for Shri Gaurav Krishna Goswami, Vrajras Production, and Bhagwat Mission.

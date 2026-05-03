@@ -151,7 +151,7 @@ export default function Navbar() {
                 {[
                   { name: 'Home', href: '/#home', isExternal: false },
                   { name: 'About', href: '/#about', isExternal: false },
-                  { name: 'Portfolio', href: '/portfolio', isExternal: false },
+                  { name: 'Portfolio', href: '/#work', isExternal: false },
                   { name: 'Featured', href: '/#featured', isExternal: false },
                   { name: 'Contact', href: '/#contact', isExternal: false },
                   { name: 'Instagram', href: 'https://www.instagram.com/mohitdznr?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==', isExternal: true },

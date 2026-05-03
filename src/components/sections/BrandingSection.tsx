@@ -134,7 +134,7 @@ export default function BrandingSection() {
         <div className="flex md:hidden flex-col gap-6">
           {brandingItems.map((item) => (
              <div key={item.id} className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-xl shadow-[var(--color-text-main)]/5 border border-[var(--color-text-main)]/10">
-               <img src={item.src} loading="lazy" className="absolute inset-0 w-full h-full object-cover" />
+               <img src={item.src} alt={item.title} loading="lazy" className="absolute inset-0 w-full h-full object-cover" />
                <div className="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent" />
                <div className="absolute inset-0 p-6 flex flex-col justify-end">
                   <span className="text-white/80 text-[10px] font-bold tracking-widest uppercase mb-1">

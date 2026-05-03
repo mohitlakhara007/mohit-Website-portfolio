@@ -84,9 +84,16 @@ export default function Portfolio({ isFullPage = false }: { isFullPage?: boolean
           </motion.div>
 
           <div className="flex flex-col xl:flex-row xl:items-end justify-between gap-6 md:gap-10 mb-8 md:mb-16">
-            <motion.h2 variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } }} className="text-4xl md:text-5xl lg:text-7xl font-display font-bold text-[var(--color-text-main)] max-w-xl leading-[0.9] tracking-tighter uppercase shrink-0">
-              Work That <br />
-              <span className="italic font-light">Speaks.</span>
+            <motion.h2 
+               variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.1 } } }} 
+               className="text-4xl md:text-5xl lg:text-7xl font-display font-bold text-[var(--color-text-main)] max-w-xl leading-[0.9] tracking-tighter uppercase shrink-0 flex flex-col"
+            >
+              <div className="overflow-hidden">
+                <motion.span variants={{ hidden: { opacity: 0, y: "100%", rotate: 5 }, visible: { opacity: 1, y: 0, rotate: 0, transition: { duration: 0.8, ease: [0.33, 1, 0.68, 1] } } }} className="block origin-bottom-left">Work That</motion.span>
+              </div>
+              <div className="overflow-hidden">
+                <motion.span variants={{ hidden: { opacity: 0, y: "100%", rotate: 5 }, visible: { opacity: 1, y: 0, rotate: 0, transition: { duration: 0.8, ease: [0.33, 1, 0.68, 1] } } }} className="block italic font-light origin-bottom-left">Speaks.</motion.span>
+              </div>
             </motion.h2>
             
             {/* Desktop Categories */}
@@ -110,8 +117,8 @@ export default function Portfolio({ isFullPage = false }: { isFullPage?: boolean
             ref={scrollContainerRef}
             className={
               isFullPage 
-                ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 py-4"
-                : "flex gap-6 md:gap-8 overflow-x-auto hide-scroll snap-x snap-mandatory py-4"
+                ? "relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 py-4"
+                : "relative flex gap-6 md:gap-8 overflow-x-auto hide-scroll snap-x snap-mandatory py-4"
             }
           >
             {portfolioData.map((item, index) => {

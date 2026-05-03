@@ -41,14 +41,25 @@ export default function Hero() {
               </div>
             </motion.div>
             
-            <motion.h1 variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } } }} className="font-display text-5xl sm:text-7xl md:text-[8rem] lg:text-[10rem] font-bold tracking-tighter text-[var(--color-text-main)] leading-[0.9] mb-8 uppercase w-full">
-              Digital <br />
-              <span className="italic font-light">Experiences.</span>
+            <motion.h1 
+               variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.1 } } }} 
+               className="font-display text-5xl sm:text-7xl md:text-[8rem] lg:text-[10rem] font-bold tracking-tighter text-[var(--color-text-main)] leading-[0.9] mb-8 uppercase w-full flex flex-col"
+            >
+              <div className="overflow-hidden">
+                <motion.span variants={{ hidden: { opacity: 0, y: "100%", rotate: 5 }, visible: { opacity: 1, y: 0, rotate: 0, transition: { duration: 0.8, ease: [0.33, 1, 0.68, 1] } } }} className="block origin-bottom-left">
+                  UI/UX & Graphic
+                </motion.span>
+              </div>
+              <div className="overflow-hidden">
+                <motion.span variants={{ hidden: { opacity: 0, y: "100%", rotate: 5 }, visible: { opacity: 1, y: 0, rotate: 0, transition: { duration: 0.8, ease: [0.33, 1, 0.68, 1] } } }} className="block object-cover italic font-light origin-bottom-left">
+                  Designer.
+                </motion.span>
+              </div>
             </motion.h1>
 
             <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } } }} className="flex flex-col md:flex-row items-center sm:items-start md:justify-between w-full gap-8 border-t border-[var(--color-text-main)] pt-8">
                <p className="text-base md:text-xl text-[var(--color-text-main)] font-medium max-w-md leading-relaxed">
-                 Graphic Designer & UI/UX Designer from Surat, India. I craft clean, intentional and minimalist designs.
+                 Graphic Designer & UI/UX Designer based in India, serving clients in the USA & globally. I craft clean, intentional, and high-converting digital experiences.
                </p>
                
                <div className="flex flex-col sm:flex-row items-center gap-4 shrink-0">
