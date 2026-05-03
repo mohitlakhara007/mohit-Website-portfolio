@@ -1,16 +1,18 @@
-import { useEffect } from 'react';
+import { useEffect, lazy, Suspense } from 'react';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import ThemeToggle from '../components/layout/ThemeToggle';
 import AudioPlayer from '../components/layout/AudioPlayer';
-import SocialMediaCarousel from '../components/sections/SocialMediaCarousel';
-import CarouselPostSection from '../components/sections/CarouselPostSection';
-import ThumbnailCarouselSection from '../components/sections/ThumbnailCarouselSection';
-import MotionGraphicsSection from '../components/sections/MotionGraphicsSection';
-import LogofolioSection from '../components/sections/LogofolioSection';
 import AIAssistant from '../components/AIAssistant';
 import BackgroundWaves from '../components/layout/BackgroundWaves';
 import { motion } from 'motion/react';
+
+// Lazy load heavy components
+const SocialMediaCarousel = lazy(() => import('../components/sections/SocialMediaCarousel'));
+const CarouselPostSection = lazy(() => import('../components/sections/CarouselPostSection'));
+const ThumbnailCarouselSection = lazy(() => import('../components/sections/ThumbnailCarouselSection'));
+const MotionGraphicsSection = lazy(() => import('../components/sections/MotionGraphicsSection'));
+const LogofolioSection = lazy(() => import('../components/sections/LogofolioSection'));
 
 export default function PortfolioPage() {
   useEffect(() => {
@@ -28,11 +30,13 @@ export default function PortfolioPage() {
            animate={{ opacity: 1, y: 0 }}
            transition={{ duration: 0.8 }}
         >
-          <SocialMediaCarousel />
-          <CarouselPostSection />
-          <ThumbnailCarouselSection />
-          <MotionGraphicsSection />
-          <LogofolioSection />
+          <Suspense fallback={<div className="h-[50vh] flex items-center justify-center opacity-50">Loading sections...</div>}>
+            <SocialMediaCarousel />
+            <CarouselPostSection />
+            <ThumbnailCarouselSection />
+            <MotionGraphicsSection />
+            <LogofolioSection />
+          </Suspense>
         </motion.div>
       </main>
 

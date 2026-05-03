@@ -82,8 +82,8 @@ export default function Navbar() {
           {/* Desktop Nav - Split into columns */}
           <div className="hidden lg:flex items-start gap-16 xl:gap-24 text-[13px] font-medium tracking-tight uppercase border-l pl-16 border-[var(--color-text-main)]">
              <div className="flex flex-col gap-1.5">
-                <Link to="/" className="hover:opacity-50 transition-opacity">Home</Link>
-                <Link to="/about" className="hover:opacity-50 transition-opacity">About</Link>
+                <Link to="/#home" className="hover:opacity-50 transition-opacity">Home</Link>
+                <Link to="/#about" className="hover:opacity-50 transition-opacity">About</Link>
              </div>
              <div className="flex flex-col gap-1.5">
                 <Link to="/portfolio" className="hover:opacity-50 transition-opacity">Portfolio</Link>
@@ -149,8 +149,8 @@ export default function Navbar() {
             >
               <div className="flex flex-col gap-4 overflow-hidden">
                 {[
-                  { name: 'Home', href: '/', isExternal: false },
-                  { name: 'About', href: '/about', isExternal: false },
+                  { name: 'Home', href: '/#home', isExternal: false },
+                  { name: 'About', href: '/#about', isExternal: false },
                   { name: 'Portfolio', href: '/portfolio', isExternal: false },
                   { name: 'Featured', href: '/#featured', isExternal: false },
                   { name: 'Contact', href: '/#contact', isExternal: false },

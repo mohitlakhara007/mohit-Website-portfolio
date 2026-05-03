@@ -107,6 +107,7 @@ export default function About() {
              <img 
                src="https://plain-apac-prod-public.komododecks.com/202604/27/sUr4GJHq2qOap0mzoUAJ/image.jpg" 
                alt="Mohit Lakhara" 
+               loading="lazy"
                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
              />
              {/* minimalist corner accent */}

@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { ArrowUpRight } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Footer() {
   const [time, setTime] = useState("");
@@ -68,11 +69,16 @@ export default function Footer() {
             <span className="text-[10px] uppercase tracking-[0.2em] font-bold opacity-40 block">Index</span>
             
             <ul className="flex flex-col gap-4">
-               {['Home', 'About', 'Portfolio', 'Featured'].map(item => (
-                  <li key={item}>
-                    <a href={`#${item.toLowerCase()}`} className="text-2xl md:text-3xl font-display font-medium uppercase tracking-tight hover:italic hover:translate-x-2 transition-all duration-300 w-max inline-block pr-4">
-                      {item}
-                    </a>
+               {[
+                 { name: 'Home', href: '/#home' },
+                 { name: 'About', href: '/#about' },
+                 { name: 'Portfolio', href: '/portfolio' },
+                 { name: 'Featured', href: '/#featured' }
+               ].map(item => (
+                  <li key={item.name}>
+                    <Link to={item.href} className="text-2xl md:text-3xl font-display font-medium uppercase tracking-tight hover:italic hover:translate-x-2 transition-all duration-300 w-max inline-block pr-4">
+                      {item.name}
+                    </Link>
                   </li>
                ))}
             </ul>
@@ -103,7 +109,9 @@ export default function Footer() {
 
       {/* Extreme minimal bottom footer */}
       <div className="border-t border-[var(--color-bg-light)]/20 py-6 px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] uppercase tracking-[0.3em] font-bold opacity-40">
-         <span>&copy; {new Date().getFullYear()} MOHIT LAKHARA</span>
+         <Link to="/" className="hover:opacity-70 transition-opacity">
+           <span>&copy; {new Date().getFullYear()} MOHIT LAKHARA</span>
+         </Link>
          <span>DEVELOPED BY MOHIT</span>
       </div>
     </footer>

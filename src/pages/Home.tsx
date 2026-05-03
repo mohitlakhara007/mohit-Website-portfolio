@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import { AnimatePresence } from 'motion/react';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
@@ -6,13 +6,15 @@ import ThemeToggle from '../components/layout/ThemeToggle';
 import AudioPlayer from '../components/layout/AudioPlayer';
 import Preloader from '../components/layout/Preloader';
 import Hero from '../components/sections/Hero';
-import About from '../components/sections/About';
-import Portfolio from '../components/sections/Portfolio';
-import CurrentProject from '../components/sections/CurrentProject';
-import FeaturedWork from '../components/sections/FeaturedWork';
-import Contact from '../components/sections/Contact';
 import AIAssistant from '../components/AIAssistant';
 import BackgroundWaves from '../components/layout/BackgroundWaves';
+
+// Lazy load below-the-fold sections for better performance
+const About = lazy(() => import('../components/sections/About'));
+const Portfolio = lazy(() => import('../components/sections/Portfolio'));
+const CurrentProject = lazy(() => import('../components/sections/CurrentProject'));
+const FeaturedWork = lazy(() => import('../components/sections/FeaturedWork'));
+const Contact = lazy(() => import('../components/sections/Contact'));
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -35,11 +37,13 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
-        <About />
-        <Portfolio />
-        <CurrentProject />
-        <FeaturedWork />
-        <Contact />
+        <Suspense fallback={<div className="h-[50vh] flex items-center justify-center opacity-50">Loading...</div>}>
+          <About />
+          <Portfolio />
+          <CurrentProject />
+          <FeaturedWork />
+          <Contact />
+        </Suspense>
       </main>
       
       {/* Controls Container - Bottom Left on Mobile, Bottom Right on Desktop */}

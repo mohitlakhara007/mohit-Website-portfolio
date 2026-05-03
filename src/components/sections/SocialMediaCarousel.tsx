@@ -33,6 +33,7 @@ const CarouselRow = ({ items, reverse = false }: { items: any[], reverse?: boole
               <img 
                  src={item.src} 
                  alt={item.platform} 
+                 loading="lazy"
                  className="w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-110" 
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-6 md:p-8">
@@ -56,6 +57,7 @@ const CarouselRow = ({ items, reverse = false }: { items: any[], reverse?: boole
               <img 
                  src={item.src} 
                  alt={item.platform} 
+                 loading="lazy"
                  className="w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-110" 
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-6 md:p-8">

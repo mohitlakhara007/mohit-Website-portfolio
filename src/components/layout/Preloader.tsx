@@ -8,13 +8,13 @@ export default function Preloader({ onComplete }: { onComplete: () => void; key?
 
   useEffect(() => {
     const animation = animate(count, 100, {
-      duration: 2.5,
+      duration: 0.5,
       ease: [0.33, 1, 0.68, 1],
       onUpdate: (latest) => setProgress(Math.round(latest)),
       onComplete: () => {
         setTimeout(() => {
           onComplete();
-        }, 400);
+        }, 100);
       }
     });
 

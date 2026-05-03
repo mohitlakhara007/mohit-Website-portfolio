@@ -64,6 +64,7 @@ export default function FeaturedWork() {
             <img 
                src="https://mir-s3-cdn-cf.behance.net/projects/max_808/a954f9238787187.Y3JvcCw5ODEsNzY4LDE3LDA.jpg" 
                alt="Svarah Jewellery Branding" 
+               loading="lazy"
                className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 ease-in-out"
             />
           </a>

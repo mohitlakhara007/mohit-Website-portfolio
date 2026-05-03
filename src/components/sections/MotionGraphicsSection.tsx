@@ -21,6 +21,7 @@ const ReelCard = ({ src, title, instagramUrl }: { src?: string, title: string, i
             className="w-full h-full border-none"
             scrolling="no"
             allow="encrypted-media"
+            loading="lazy"
           />
         ) : (
           <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center text-[var(--color-text-main)]/50">

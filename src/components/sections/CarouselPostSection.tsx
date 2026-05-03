@@ -50,7 +50,7 @@ const InstagramCard = ({ images, likes, timeAgo, username = "houseofekta_pr_digi
         <div className="flex items-center gap-3">
           <div className="w-9 h-9 rounded-full bg-gradient-to-tr from-[#f09433] via-[#e6683c] to-[#bc1888] p-[2px]">
             <div className="w-full h-full rounded-full border-[1.5px] border-[var(--color-bg-main)] overflow-hidden bg-[var(--color-text-muted)]">
-               <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix&backgroundColor=f0f0f0" alt="avatar" className="w-full h-full object-cover" />
+               <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix&backgroundColor=f0f0f0" alt="avatar" loading="lazy" className="w-full h-full object-cover" />
             </div>
           </div>
           <div>
@@ -71,7 +71,7 @@ const InstagramCard = ({ images, likes, timeAgo, username = "houseofekta_pr_digi
         >
           {images.map((item) => (
              <div key={item.id} className="w-full h-full shrink-0 snap-center relative">
-               <img src={item.src} className="w-full h-full object-cover" />
+               <img src={item.src} loading="lazy" className="w-full h-full object-cover" />
              </div>
           ))}
         </div>

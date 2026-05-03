@@ -120,6 +120,7 @@ export default function Portfolio({ isFullPage = false }: { isFullPage?: boolean
                   <img 
                     src={item.img} 
                     alt={item.title}
+                    loading="lazy"
                     className="w-full h-full object-cover transition-transform duration-1000 group-hover/card:scale-105"
                   />
                   
