@@ -2,9 +2,9 @@ import React from 'react';
 import { motion } from 'motion/react';
 
 const logos = [
-  { id: 1, name: 'Sweets & Namkeen Logo', src: 'https://plain-apac-prod-public.komododecks.com/202605/03/uDPZolrnpeP4yeLie5L2/image.jpg', span: 'col-span-1' },
-  { id: 2, name: 'Clothing Brand Logo', src: 'https://plain-apac-prod-public.komododecks.com/202605/03/JEIeHS2teW4G0EANApeA/image.jpg', span: 'col-span-1' },
-  { id: 3, name: 'Skin Care Brand Logo', src: 'https://plain-apac-prod-public.komododecks.com/202605/03/kVwo1HoEqzwUjwbSCpVW/image.jpg', span: 'col-span-1' },
+  { id: 1, name: 'Sweets & Namkeen Logo', src: 'https://plain-apac-prod-public.komododecks.com/202605/03/uDPZolrnpeP4yeLie5L2/image.jpg', span: 'col-span-1', link: 'https://www.behance.net/gallery/236017537/Logo-Presentation-Of-Maharaja-Sweet-Namkeen' },
+  { id: 2, name: 'Clothing Brand Logo', src: 'https://plain-apac-prod-public.komododecks.com/202605/03/JEIeHS2teW4G0EANApeA/image.jpg', span: 'col-span-1', link: 'https://www.behance.net/gallery/240619405/Urban-Vogue-Logo-Presentation' },
+  { id: 3, name: 'Skin Care Brand Logo', src: 'https://plain-apac-prod-public.komododecks.com/202605/03/kVwo1HoEqzwUjwbSCpVW/image.jpg', span: 'col-span-1', link: 'https://www.behance.net/gallery/248659107/Moistel-Skin-care-logo-design' },
 ];
 
 export default function LogofolioSection() {
@@ -30,7 +30,10 @@ export default function LogofolioSection() {
       <div className="container mx-auto px-6 max-w-7xl">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 auto-rows-[250px] md:auto-rows-[300px]">
           {logos.map((logo, index) => (
-            <motion.div
+            <motion.a
+              href={logo.link}
+              target="_blank"
+              rel="noopener noreferrer"
               key={logo.id}
               initial={{ opacity: 0, scale: 0.9, y: 30 }}
               whileInView={{ opacity: 1, scale: 1, y: 0 }}
@@ -50,7 +53,7 @@ export default function LogofolioSection() {
                    {logo.name}
                  </span>
               </div>
-            </motion.div>
+            </motion.a>
           ))}
         </div>
       </div>

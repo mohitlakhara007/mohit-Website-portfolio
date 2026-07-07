@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 
 export default function CurrentProject() {
+  // Current project section
   return (
     <section className="py-[40px] md:py-[80px] bg-[var(--color-bg-light)] relative w-full overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-6 md:px-12">

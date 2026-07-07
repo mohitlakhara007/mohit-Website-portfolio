@@ -13,10 +13,9 @@ export default function FloatingControls() {
     audioRef.current.loop = true;
     audioRef.current.volume = 0.3;
 
-    // Check system preference
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    // Check if body already has dark class (due to another instance)
+    if (document.body.classList.contains('dark')) {
       setIsDark(true);
-      document.body.classList.add('dark');
     }
 
     return () => {

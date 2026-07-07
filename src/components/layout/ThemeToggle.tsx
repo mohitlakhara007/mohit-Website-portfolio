@@ -6,17 +6,12 @@ export default function ThemeToggle({ className = "" }: { className?: string }) 
   const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
-    // Check initial theme preference
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      setIsDark(true);
-      if (!document.body.classList.contains('dark')) {
-          document.body.classList.add('dark');
-      }
-    }
-    
-    // Also check if body already has dark class (due to another instance)
+    // Check if body already has dark class (due to another instance)
     if (document.body.classList.contains('dark')) {
         setIsDark(true);
+    } else {
+        setIsDark(false);
+        document.body.classList.remove('dark');
     }
   }, []);
 
@@ -47,8 +42,6 @@ export default function ThemeToggle({ className = "" }: { className?: string }) 
           className="flex items-center justify-center"
         >
           {isDark ? (
-            <Moon size={20} fill="currentColor" strokeWidth={1.5} />
-          ) : (
             <motion.div 
               animate={{ rotate: 360 }} 
               transition={{ repeat: Infinity, duration: 8, ease: "linear" }}
@@ -56,6 +49,8 @@ export default function ThemeToggle({ className = "" }: { className?: string }) 
             >
               <Sun size={22} fill="currentColor" strokeWidth={2} />
             </motion.div>
+          ) : (
+            <Moon size={20} fill="currentColor" strokeWidth={1.5} />
           )}
         </motion.div>
       </AnimatePresence>
