@@ -1,5 +1,5 @@
-import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'motion/react';
+import { useRef, useState, MouseEvent as ReactMouseEvent } from 'react';
+import { motion, useScroll, useTransform, useMotionValue, useSpring, useMotionTemplate } from 'motion/react';
 
 export default function About() {
   const skills = ["Graphic Design", "UI/UX Design", "Branding", "Social Media", "Typography"];
@@ -9,6 +9,39 @@ export default function About() {
     offset: ["start end", "end start"]
   });
   const y = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
+
+  // Spotlight Effect
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const springX = useSpring(mouseX, { stiffness: 500, damping: 28 });
+  const springY = useSpring(mouseY, { stiffness: 500, damping: 28 });
+  const maskImage = useMotionTemplate`radial-gradient(circle 120px at ${springX}px ${springY}px, black 0%, transparent 100%)`;
+
+  const handleMouseMove = (e: ReactMouseEvent<HTMLDivElement>) => {
+    if (containerRef.current) {
+      const rect = containerRef.current.getBoundingClientRect();
+      mouseX.set(e.clientX - rect.left);
+      mouseY.set(e.clientY - rect.top);
+    }
+  };
+
+  const textContent = (
+    <>
+      <p>
+        Hey! I'm Mohit Lakhara, a freelance graphic and UI/UX designer based in India, collaborating with clients locally and in the USA. Currently pursuing my BCA, I spend my time crafting user-centered digital products and minimalist brand identities.
+      </p>
+      <p>
+        I like making things that look good and actually work well. Whether it's a logo, a mobile screen, or a social media post — I try to keep it clean, intentional, and real.
+      </p>
+      <div className="relative pt-6 pb-2 border-t border-[var(--color-text-main)]">
+         <p className="italic text-[var(--color-text-main)] font-display text-2xl font-medium opacity-90 tracking-tight">
+           "Designing is how I think. Every project is just me trying to say something clearly — without words."
+         </p>
+      </div>
+    </>
+  );
 
   return (
     <section id="about" className="relative py-[50px] md:py-[100px] w-full bg-[var(--color-bg-light)]">
@@ -62,18 +95,31 @@ export default function About() {
             </span>
           </motion.h2>
 
-          <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } }} className="space-y-8 text-base md:text-lg text-[var(--color-text-main)] font-medium leading-relaxed max-w-xl">
-            <p>
-              Hey! I'm Mohit Lakhara, a freelance graphic and UI/UX designer based in India, collaborating with clients locally and in the USA. Currently pursuing my BCA, I spend my time crafting user-centered digital products and minimalist brand identities.
-            </p>
-            <p>
-              I like making things that look good and actually work well. Whether it's a logo, a mobile screen, or a social media post — I try to keep it clean, intentional, and real.
-            </p>
-            <div className="relative pt-6 pb-2 border-t border-[var(--color-text-main)]">
-               <p className="italic text-[var(--color-text-main)] font-display text-2xl font-medium opacity-90 tracking-tight">
-                 "Designing is how I think. Every project is just me trying to say something clearly — without words."
-               </p>
+          <motion.div 
+            variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } }} 
+            className="text-base md:text-lg text-[var(--color-text-main)] font-medium leading-relaxed max-w-xl relative"
+            ref={containerRef}
+            onMouseMove={handleMouseMove}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
+            {/* Base Text */}
+            <div className={`space-y-8 transition-opacity duration-500 ${isHovered ? 'opacity-30' : 'opacity-100'}`}>
+              {textContent}
             </div>
+
+            {/* Spotlight Text */}
+            <motion.div 
+              className="absolute inset-0 space-y-8 pointer-events-none"
+              style={{
+                WebkitMaskImage: maskImage,
+                maskImage: maskImage,
+                opacity: isHovered ? 1 : 0,
+              }}
+              transition={{ duration: 0.3 }}
+            >
+              {textContent}
+            </motion.div>
           </motion.div>
 
           <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } }} className="mt-12 pt-8 border-t border-b border-[var(--color-text-main)] pb-8 relative overflow-hidden group">
